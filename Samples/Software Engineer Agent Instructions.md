@@ -307,7 +307,7 @@ Use for features involving:
 
 **Template for Complex Features (TDD Approach):**
 ```
-# AGENT TYPE: CURSOR
+# AGENT TYPE: SOFTWARE ENGINEER AGENT
 # [Feature Name] Implementation - Test Driven Development - Phase [X]
 
 ## Phase Context
@@ -442,7 +442,7 @@ Before considering this phase complete:
 
 #### **Moderate Features** (Structured TDD Guidance Prompts)
 ```
-# AGENT TYPE: CURSOR
+# AGENT TYPE: SOFTWARE ENGINEER AGENT
 # [Feature Name] Implementation - TDD Approach - Phase [X]
 
 ## Phase Context
@@ -490,7 +490,7 @@ Before considering this phase complete:
 
 #### **Simple Features** (High-Level TDD Guidance Prompts)
 ```
-# AGENT TYPE: CURSOR
+# AGENT TYPE: SOFTWARE ENGINEER AGENT
 # [Feature Name] Implementation - TDD Approach - Phase [X]
 
 ## Phase Context
