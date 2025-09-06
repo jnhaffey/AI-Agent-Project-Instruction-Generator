@@ -7,30 +7,35 @@ This document outlines the complete workflow and interactions between the five s
 
 ## Agent Ecosystem Components
 
-### 1. [Product Manager/Product Owner Agent](Samples/Product Owner Agent Instructions.md)
+### 1. Product Manager/Product Owner Agent
 **Role**: Idea evaluation and MVP planning
 **Input**: Raw product ideas and domain context
 **Output**: Structured epics, features, user stories, UI mockups, and three handoff prompts
+**Sample**: [Agent Instructions](/Samples/Product%20Owner%20Agent%20Instructions.md)
 
-### 2. [Architecture Agent](Samples/Architecture Agent Instructions.md)
+### 2. Architecture Agent
 **Role**: Technical architecture design and implementation oversight
 **Input**: Product requirements from Product Agent
 **Output**: Technical architecture plan with visual diagrams and Software Engineer handoff prompt
+**Sample**: [Agent Instructions](/Samples/Architecture%20Agent%20Instructions.md)
 
-### 3. [Software Engineer Agent](Samples/Software Engineer Agent Instructions.md)
+### 3. Software Engineer Agent
 **Role**: Implementation planning and Cursor prompt generation
 **Input**: Architectural specifications and product requirements
 **Output**: Development environment requirements and detailed Cursor implementation prompts
+**Sample**: [Agent Instructions](/Samples/Software%20Engineer%20Agent%20Instructions.md)
 
-### 4. [Code Reviewer Agent](Samples/Code Reviewer Agent Instructions.md)
+### 4. Code Reviewer Agent
 **Role**: Pull request-style code quality review
 **Input**: Code implementations from Software Engineer Agent
 **Output**: Structured feedback and improvement recommendations
+**Sample**: [Agent Instructions](https://github.com/jnhaffey/AI-Agent-Project-Instruction-Generator/blob/main/Samples/Code%20Reviewer%20Agent%20Instructions.md)
 
-### 5. [QA Engineer Agent](Samples/QA Engineer Agent Instructions.md)
+### 5. QA Engineer Agent
 **Role**: Integration and end-to-end testing validation
 **Input**: User stories and implemented code
 **Output**: Automated test suites and defect reports
+**Sample**: [Agent Instructions](/Samples/QA%20Engineer%20Agent%20Instructions.md)
 
 ---
 
