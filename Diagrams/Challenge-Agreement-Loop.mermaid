@@ -1,5 +1,11 @@
 graph LR
     A[Architect Agent] --> B[Generate 3 Handoffs]
+    P[Product Manager Agent] --> X[Generate UI/UX Handoff]
+    X --> U[UI/UX Design Review]
+    U --> U1{PM Agreement?}
+    U1 -->|No| U2[PM Feedback]
+    U2 --> U
+    U1 -->|Yes| U3[Design Ready]
     B --> C[Software Engineer Review]
     B --> D[DevOps Engineer Review]
     B --> E[QA Engineer Review]

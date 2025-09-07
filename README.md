@@ -15,17 +15,17 @@ An interactive version of these Agent Instructions is available in Claude.
 **Input**: Raw product ideas and market context
 **Output**: Business case analysis and Product Manager handoff prompt
 
-### 2. Product Manager/Product Owner Agent v1.0.0
-**Role**: Product strategy, MVP planning, and requirements definition
+### 2. Product Manager/Product Owner Agent v2.0.0
+**Role**: Product strategy, MVP planning, requirements definition, and UI/UX handoff preparation
 **Input**: Business case from Business Analyst Agent
-**Output**: Product requirements, UI mockups, and THREE handoff prompts
+**Output**: Product requirements, UI/UX handoff package, and FOUR handoff prompts
 
 ### 3. Architect Agent v1.0.0
 **Role**: Technical architecture design, implementation oversight, and multi-agent coordination
 **Input**: Product requirements from Product Manager Agent
 **Output**: Technical architecture plan with visual diagrams and THREE handoff prompts
 
-### 4. Software Engineer Agent v1.1.0
+### 4. Software Engineer Agent v1.1.1
 **Role**: Implementation planning, TDD development, and code structure design
 **Input**: Architecture specifications and challenge/collaboration cycle
 **Output**: Phased implementation with comprehensive testing and documentation
@@ -35,7 +35,7 @@ An interactive version of these Agent Instructions is available in Claude.
 **Input**: Architecture specifications and challenge/collaboration cycle
 **Output**: Production-ready infrastructure and deployment automation
 
-### 6. QA Engineer Agent v1.0.0
+### 6. QA Engineer Agent v1.0.1
 **Role**: Product validation, integration testing, and end-to-end testing
 **Input**: Architecture specifications, implementation summaries, and challenge/collaboration cycle
 **Output**: Automated test suites and product validation reports
@@ -44,6 +44,12 @@ An interactive version of these Agent Instructions is available in Claude.
 **Role**: Code quality review and compliance validation
 **Input**: Implementation code and handoff specifications
 **Output**: Quality feedback and approval validation
+
+### 8. UI/UX Design Agent v1.0.0
+**Role**: UI/UX design, flows, and component specifications
+**Input**: Product requirements and personas from Product Manager Agent
+**Output**: Annotated mockups, design system snapshot, and TWO handoff prompts (SE, QA)
+
 
 ---
 
@@ -60,13 +66,14 @@ graph TD
     B4 --> C[Product Manager Agent]
     C --> C1[Product Strategy & MVP Planning]
     C1 --> C2[Technology Stack Evaluation]
-    C2 --> C3[Create UI Mockups]
+    C2 --> C3[Prepare UI/UX Handoff]
     C3 --> C4[User Review & Approval]
-    C4 --> C5[Generate 3 Handoff Prompts]
+    C4 --> C5[Generate 4 Handoff Prompts]
     
     C5 --> D[Architect Agent]
     C5 --> E[Software Engineer Agent - Queued]
     C5 --> F[QA Engineer Agent - Queued]
+    C5 --> U[UI/UX Design Agent]
     
     D --> D1[Technology Stack Evaluation]
     D1 --> D2[Design Architecture]
@@ -77,6 +84,17 @@ graph TD
     D5 --> E
     D5 --> G[DevOps Engineer Agent]
     D5 --> F
+
+    %% UI/UX Design Flow
+    U --> U1[Design Experience & Mockups]
+    U1 --> Ux[PM Review]
+    Ux --> Uy{PM Agreement?}
+    Uy -->|No| Uz[PM Feedback]
+    Uz --> U1
+    Uy -->|Yes| U2[User Review & Approval]
+    U2 --> U3[Generate 2 Handoff Prompts]
+    U3 --> E
+    U3 --> F
     
     %% Challenge and Agreement Cycle
     E --> E1[Review Architecture Handoff]
@@ -166,18 +184,19 @@ graph TD
 
 ### Phase 2: Product Strategy & Requirements
 
-#### Product Manager Agent Workflow
+#### Product Manager Agent Workflow (Updated)
 1. **Business Context Integration**: Incorporate business analysis findings into product strategy
 2. **Technology Stack Evaluation**: Assess if default technology stack is optimal for business objectives
 3. **MVP Planning**: Create structured epic breakdown with themes, features, and user stories
-4. **UI Mockup Creation**: Generate basic interface mockups for all user-facing components
+4. **UI/UX Handoff Preparation**: Prepare a dedicated handoff package for the UI/UX Design Agent
 5. **User Validation**: Present complete product plan for approval
-6. **Multi-Agent Handoff**: Create THREE specialized prompts with Agent Type labels
+6. **Multi-Agent Handoff**: Create FOUR specialized prompts (Architecture, UI/UX, Software Engineer, QA)
 
-#### Product Manager Agent Output
+#### Product Manager Agent Output (Updated)
 - **Architect Agent Prompt**: `AGENT TYPE: ARCHITECTURE AGENT` - Product requirements with business context and confirmed technology stack
-- **Software Engineer Agent Prompt**: `AGENT TYPE: SOFTWARE ENGINEER AGENT` - Implementation context with UI mockup references (queued until architecture complete)
-- **QA Engineer Agent Prompt**: `AGENT TYPE: QA ENGINEER AGENT` - Testing requirements with UI validation needs (queued until architecture complete)
+- **UI/UX Design Agent Prompt**: `AGENT TYPE: UI/UX DESIGN AGENT` - Experience objectives, personas, screen inventory, and constraints
+- **Software Engineer Agent Prompt**: `AGENT TYPE: SOFTWARE ENGINEER AGENT` - Implementation context (queued until architecture complete and designs ready)
+- **QA Engineer Agent Prompt**: `AGENT TYPE: QA ENGINEER AGENT` - Testing requirements with UI validation needs (queued until architecture complete and designs ready)
 
 ### Phase 3: Technical Architecture & Multi-Agent Coordination
 
@@ -190,6 +209,14 @@ graph TD
 6. **Multi-Agent Handoff**: Create THREE detailed handoff prompts for implementation agents
 
 #### Architect Agent Output
+-
+#### UI/UX Design Agent Workflow (NEW)
+1. **Experience Design**: Create flows, wireframes/mockups, and design system snapshot
+2. **Feasibility Alignment**: Confirm feasibility within the architecture and stack
+3. **PM Review & Agreement Loop**: Present designs to the Product Manager for approval; if not approved, receive feedback and iterate until both PM and UI/UX Design Agents agree
+4. **User Review**: Present designs for user approval after PM agreement
+5. **Handoff Generation**: Provide two handoffs to Software Engineer and QA Engineer Agents
+
 - **Software Engineer Agent Handoff**: `AGENT TYPE: SOFTWARE ENGINEER AGENT` with complete specifications
 - **DevOps Engineer Agent Handoff**: `AGENT TYPE: DEVOPS ENGINEER AGENT` with infrastructure requirements
 - **QA Engineer Agent Handoff**: `AGENT TYPE: QA ENGINEER AGENT` with architecture behavior specifications
@@ -291,6 +318,12 @@ graph TD
 ```mermaid
 graph LR
     A[Architect Agent] --> B[Generate 3 Handoffs]
+    P[Product Manager Agent] --> X[Generate UI/UX Handoff]
+    X --> U[UI/UX Design Review]
+    U --> U1{PM Agreement?}
+    U1 -->|No| U2[PM Feedback]
+    U2 --> U
+    U1 -->|Yes| U3[Design Ready]
     B --> C[Software Engineer Review]
     B --> D[DevOps Engineer Review]
     B --> E[QA Engineer Review]
@@ -339,6 +372,7 @@ graph LR
 #### Agent Type Labels for Clear Routing
 - **`AGENT TYPE: BUSINESS ANALYST AGENT`**: Market analysis and business case handoff
 - **`AGENT TYPE: PRODUCT MANAGER AGENT`**: Product requirements and business context
+- **`AGENT TYPE: UI/UX DESIGN AGENT`**: UI/UX designs, interaction specs, and design system
 - **`AGENT TYPE: ARCHITECTURE AGENT`**: Technical specifications, challenges, and updates
 - **`AGENT TYPE: SOFTWARE ENGINEER AGENT`**: Implementation specifications, fixes, and summaries
 - **`AGENT TYPE: DEVOPS ENGINEER AGENT`**: Infrastructure requirements and coordination
@@ -348,6 +382,8 @@ graph LR
 #### Integration Points
 - **Business Analyst → Product Manager**: Market analysis and business model recommendations
 - **Product Manager → Architecture**: Product requirements with business context and technology stack
+- **Product Manager → UI/UX Design**: Experience objectives, personas, and screen inventory
+- **UI/UX Design → Software Engineer/QA**: Annotated designs and validation specs
 - **Architecture → Software Engineer/DevOps/QA**: Technical specifications with challenge/agreement cycle
 - **Software Engineer ↔ DevOps Engineer**: Local and cloud development coordination
 - **Software Engineer → Code Reviewer**: Implementation validation and quality assurance
@@ -499,14 +535,7 @@ The agent ecosystem is designed to be extensible and will continue to evolve wit
 ### Planned Agent Additions
 
 #### 8. UI/UX Design Agent
-**Role**: Specialized user interface and user experience design
-**Purpose**: Remove UI/UX design responsibilities from the Product Manager Agent to allow for more focused expertise
-**Responsibilities**:
-- Create detailed UI/UX designs and wireframes
-- Develop user journey maps and interaction flows
-- Design responsive layouts and accessibility considerations
-- Generate design systems and component libraries
-- Collaborate with Product Manager on user experience strategy
+Status: Already integrated above. This item has been implemented; see Agent Ecosystem Components and workflow updates.
 
 #### 9. Marketing Agent
 **Role**: Marketing strategy and campaign development

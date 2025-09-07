@@ -9,11 +9,12 @@ graph TD
     B4 --> C[Product Manager Agent]
     C --> C1[Product Strategy & MVP Planning]
     C1 --> C2[Technology Stack Evaluation]
-    C2 --> C3[Create UI Mockups]
+    C2 --> C3[Prepare UI/UX Handoff]
     C3 --> C4[User Review & Approval]
-    C4 --> C5[Generate 3 Handoff Prompts]
+    C4 --> C5[Generate 4 Handoff Prompts]
     
     C5 --> D[Architect Agent]
+    C5 --> U[UI/UX Design Agent]
     C5 --> E[Software Engineer Agent - Queued]
     C5 --> F[QA Engineer Agent - Queued]
     
@@ -26,6 +27,17 @@ graph TD
     D5 --> E
     D5 --> G[DevOps Engineer Agent]
     D5 --> F
+
+    %% UI/UX Design Flow
+    U --> U1[Design Experience & Mockups]
+    U1 --> Ux[PM Review]
+    Ux --> Uy{PM Agreement?}
+    Uy -->|No| Uz[PM Feedback]
+    Uz --> U1
+    Uy -->|Yes| U2[User Review & Approval]
+    U2 --> U3[Generate 2 Handoff Prompts]
+    U3 --> E
+    U3 --> F
     
     %% Challenge and Agreement Cycle
     E --> E1[Review Architecture Handoff]
@@ -92,5 +104,6 @@ graph TD
     style E fill:#fff3e0
     style G fill:#e3f2fd
     style F fill:#fce4ec
+    style U fill:#fde7f3
     style K fill:#e0f2f1
     style Q fill:#c8e6c9
