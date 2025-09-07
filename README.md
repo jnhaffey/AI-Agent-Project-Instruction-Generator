@@ -298,25 +298,30 @@ graph LR
 ### Cross-Agent Communication
 
 #### Agent Type Labels for Clear Routing
+- **`AGENT TYPE: PRODUCT MANAGER AGENT`**: Business analysis handoff with market context
 - **`AGENT TYPE: ARCHITECTURE AGENT`**: Product requirements and constraints
 - **`AGENT TYPE: SOFTWARE ENGINEER AGENT`**: Implementation specifications, feedback, and issues
 - **`AGENT TYPE: QA ENGINEER AGENT`**: Testing requirements and validation needs
 - **`AGENT TYPE: CURSOR`**: Direct implementation prompts for development
 
 #### Integration Points
-- **Product → Architecture**: Requirements with mandatory technology constraints
+- **Business Analyst → Product Manager**: Market analysis and business model recommendations
+- **Product Manager → Architecture**: Requirements with mandatory technology constraints and business context
 - **Architecture → Software Engineer**: Technical specifications with visual diagrams
-- **Product → Software Engineer**: UI mockups and user experience requirements
-- **Product → QA Engineer**: User stories and UI validation requirements
+- **Product Manager → Software Engineer**: UI mockups and user experience requirements
+- **Product Manager → QA Engineer**: User stories and UI validation requirements
 - **Architecture → QA Engineer**: Technical behavior specifications
 - **Code Reviewer → Software Engineer**: Handoff compliance feedback
 - **QA Engineer → Software Engineer**: Product validation feedback
 - **Architecture ↔ Software Engineer**: Ongoing architectural compliance validation
 
 #### User Interaction Points
-- **Product Agent**: Idea validation, epic approval, and UI mockup review
+- **Business Analyst Agent**: Market scope clarification, business model validation, and viability decisions
+- **Product Manager Agent**: Product strategy validation, epic approval, and UI mockup review
 - **Architecture Agent**: Architecture review, diagram approval, and technology validation
 - **Software Engineer Agent**: Environment setup, library preferences, and phase approvals
+- **Development Process**: Cursor prompt execution and phase-by-phase implementation
+- **Final Delivery**: Market-validated, tested, and documented features
 - **Development Process**: Cursor prompt execution and phase-by-phase implementation
 - **Final Delivery**: Validated, tested, and documented features
 
@@ -368,56 +373,70 @@ All agents enforce these non-negotiable constraints:
 
 ### Key Success Factors
 
-#### Comprehensive Coverage
+#### Comprehensive Coverage with Business Validation
+- **Market Analysis**: Thorough feasibility assessment before product development
+- **Business Model Alignment**: Revenue strategy integrated throughout development
 - **Product Strategy**: Clear requirements and user-focused design with visual mockups
 - **Technical Architecture**: Robust, scalable system design with mandatory technology compliance
 - **Implementation Quality**: Professional code standards with TDD methodology
 - **Product Validation**: Comprehensive quality assurance against all requirements
 
 #### Consistency & Standards
+- **Business Model Focus**: Prioritized revenue models enforced across all development
 - **Technology Stack**: Enforced compliance across all projects and agents
 - **Code Quality**: Consistent review standards and feedback mechanisms
 - **Testing Strategy**: Standardized testing approaches and frameworks
 - **Documentation**: Clear specifications and visual representations at all levels
 
 #### Cost Efficiency & Control
+- **Market Validation**: Ideas validated for viability before development investment
 - **Local Development**: Minimal cloud costs during development phase
 - **Phased Approach**: User control over development progression
 - **Containerization**: Consistent environments and easy deployment
 - **Automation**: Reduced manual effort through agent coordination
 
 #### Quality Assurance & Validation
-- **Multi-Level Review**: Product, architecture, code, and functionality validation
+- **Business Case Validation**: Market opportunity and monetization potential confirmed
+- **Multi-Level Review**: Business, product, architecture, code, and functionality validation
 - **Visual Consistency**: UI implementations match designed mockups exactly
-- **Requirements Traceability**: All implementations trace back to original requirements
+- **Requirements Traceability**: All implementations trace back to original business case and requirements
 - **Comprehensive Testing**: Product validation from multiple perspectives
 
 ---
 
 ## Benefits of the Integrated Agent Ecosystem
 
+### Enhanced Business Value
+- **Market-Driven Development**: All projects validated for business opportunity before development
+- **Revenue Model Integration**: Business models considered throughout entire development cycle
+- **Risk Mitigation**: Technology, market, and financial risks identified early
+- **Competitive Positioning**: Market analysis ensures differentiated solutions
+
 ### Enhanced Quality Control
-- **Multiple Validation Points**: Requirements, architecture, code, and product validation
+- **Multiple Validation Points**: Business, requirements, architecture, code, and product validation
 - **Visual Consistency**: UI mockups ensure consistent user experience
 - **Technology Compliance**: Mandatory stack ensures project consistency
-- **Comprehensive Testing**: Product validation rather than just code testing
+- **Business Model Validation**: Products designed to support identified revenue streams
 
 ### Improved Efficiency
+- **Early Filtering**: Non-viable ideas stopped before development investment
 - **Clear Handoffs**: Agent Type labels enable proper routing and automation
 - **Phased Development**: Controlled progression with user oversight
 - **Parallel Preparation**: Multiple agents can prepare simultaneously
 - **Automated Validation**: Consistent checking against specifications
 
 ### Risk Mitigation
+- **Business Feasibility**: Market and financial viability confirmed before development
 - **Early Architecture Review**: Technical issues caught before implementation
 - **Phase-by-Phase Approval**: Issues addressed at each development stage
 - **Handoff Compliance**: Implementations match specifications exactly
-- **Product Validation**: Final product meets all original requirements
+- **Product Validation**: Final product meets all original business and technical requirements
 
 ### Professional Standards
+- **Business Case Documentation**: Comprehensive market analysis and business planning
 - **Enterprise-Level Documentation**: Technical and user documentation maintained
 - **Industry Best Practices**: TDD, proper architecture, comprehensive testing
 - **Scalable Patterns**: Consistent approaches across all projects
-- **Knowledge Capture**: Documented decisions and architectural patterns
+- **Knowledge Capture**: Documented decisions, market analysis, and architectural patterns
 
-This integrated agent ecosystem provides a complete, professional development workflow that takes ideas from concept to production-ready implementation while maintaining high quality standards, cost efficiency, and user control throughout the entire process.
+This integrated agent ecosystem provides a complete, professional development workflow that takes raw business ideas from initial concept through market validation to production-ready implementation while maintaining high quality standards, business viability, cost efficiency, and user control throughout the entire process.
