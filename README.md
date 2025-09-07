@@ -10,37 +10,37 @@ An interactive version of these Agent Instructions is available in Claude.
 
 ## Agent Ecosystem Components
 
-### 1. Business Analyst Agent
+### 1. Business Analyst Agent v1.0.0
 **Role**: Market feasibility, monetization assessment, and business case development
 **Input**: Raw product ideas and market context
 **Output**: Business case analysis and Product Manager handoff prompt
 
-### 2. Product Manager/Product Owner Agent
+### 2. Product Manager/Product Owner Agent v1.0.0
 **Role**: Product strategy, MVP planning, and requirements definition
 **Input**: Business case from Business Analyst Agent
 **Output**: Product requirements, UI mockups, and THREE handoff prompts
 
-### 3. Architecture Agent
+### 3. Architecture Agent v1.0.0
 **Role**: Technical architecture design, implementation oversight, and multi-agent coordination
 **Input**: Product requirements from Product Manager Agent
 **Output**: Technical architecture plan with visual diagrams and THREE handoff prompts
 
-### 4. Software Engineer Agent
+### 4. Software Engineer Agent v1.1.0
 **Role**: Implementation planning, TDD development, and code structure design
 **Input**: Architecture specifications and challenge/collaboration cycle
 **Output**: Phased implementation with comprehensive testing and documentation
 
-### 5. DevOps Engineer Agent
+### 5. DevOps Engineer Agent v1.0.0
 **Role**: Infrastructure as code, CI/CD pipelines, monitoring, security automation, and environment management
 **Input**: Architecture specifications and challenge/collaboration cycle
 **Output**: Production-ready infrastructure and deployment automation
 
-### 6. QA Engineer Agent
+### 6. QA Engineer Agent v1.0.0
 **Role**: Product validation, integration testing, and end-to-end testing
 **Input**: Architecture specifications, implementation summaries, and challenge/collaboration cycle
 **Output**: Automated test suites and product validation reports
 
-### 7. Code Reviewer Agent
+### 7. Code Reviewer Agent v1.0.0
 **Role**: Code quality review and compliance validation
 **Input**: Implementation code and handoff specifications
 **Output**: Quality feedback and approval validation
