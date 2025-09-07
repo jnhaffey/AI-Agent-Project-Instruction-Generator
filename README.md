@@ -6,7 +6,7 @@ This document outlines the complete workflow and interactions between the six sp
 ## Interactive Claude Artifact
 An interactive version of these Agent Instructions is available in Claude.
 
-[Open the interactive Claude Artifact](https://claude.ai/public/artifacts/9979554b-27b7-4510-ac40-37f62a763ec7)
+[Open the interactive Claude Artifact](https://claude.ai/public/artifacts/92162bf9-56b1-44a8-966e-b1391d8549f2)
 
 ## Agent Ecosystem Components
 
