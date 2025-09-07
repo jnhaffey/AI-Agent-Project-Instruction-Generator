@@ -13,7 +13,7 @@ graph TD
     C3 --> C4[User Review & Approval]
     C4 --> C5[Generate 3 Handoff Prompts]
     
-    C5 --> D[Architecture Agent]
+    C5 --> D[Architect Agent]
     C5 --> E[Software Engineer Agent - Queued]
     C5 --> F[QA Engineer Agent - Queued]
     
@@ -71,7 +71,7 @@ graph TD
     K2 -->|No| K4[Code Approved]
     
     K4 --> L[Commit to Git Repository]
-    L --> M[Architecture Agent Review]
+    L --> M[Architect Agent Review]
     
     M --> M1{Architecture Compliant?}
     M1 -->|No| M2[Generate Fix Prompt]

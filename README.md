@@ -20,7 +20,7 @@ An interactive version of these Agent Instructions is available in Claude.
 **Input**: Business case from Business Analyst Agent
 **Output**: Product requirements, UI mockups, and THREE handoff prompts
 
-### 3. Architecture Agent v1.0.0
+### 3. Architect Agent v1.0.0
 **Role**: Technical architecture design, implementation oversight, and multi-agent coordination
 **Input**: Product requirements from Product Manager Agent
 **Output**: Technical architecture plan with visual diagrams and THREE handoff prompts
@@ -64,7 +64,7 @@ graph TD
     C3 --> C4[User Review & Approval]
     C4 --> C5[Generate 3 Handoff Prompts]
     
-    C5 --> D[Architecture Agent]
+    C5 --> D[Architect Agent]
     C5 --> E[Software Engineer Agent - Queued]
     C5 --> F[QA Engineer Agent - Queued]
     
@@ -122,7 +122,7 @@ graph TD
     K2 -->|No| K4[Code Approved]
     
     K4 --> L[Commit to Git Repository]
-    L --> M[Architecture Agent Review]
+    L --> M[Architect Agent Review]
     
     M --> M1{Architecture Compliant?}
     M1 -->|No| M2[Generate Fix Prompt]
@@ -175,13 +175,13 @@ graph TD
 6. **Multi-Agent Handoff**: Create THREE specialized prompts with Agent Type labels
 
 #### Product Manager Agent Output
-- **Architecture Agent Prompt**: `AGENT TYPE: ARCHITECTURE AGENT` - Product requirements with business context and confirmed technology stack
+- **Architect Agent Prompt**: `AGENT TYPE: ARCHITECTURE AGENT` - Product requirements with business context and confirmed technology stack
 - **Software Engineer Agent Prompt**: `AGENT TYPE: SOFTWARE ENGINEER AGENT` - Implementation context with UI mockup references (queued until architecture complete)
 - **QA Engineer Agent Prompt**: `AGENT TYPE: QA ENGINEER AGENT` - Testing requirements with UI validation needs (queued until architecture complete)
 
 ### Phase 3: Technical Architecture & Multi-Agent Coordination
 
-#### Architecture Agent Workflow
+#### Architect Agent Workflow
 1. **Technology Stack Evaluation**: Assess default stack and recommend alternatives when beneficial
 2. **Requirements Analysis**: Review product specifications and UI mockups with confirmed technology stack
 3. **Architecture Design**: Create technical architecture within confirmed technology constraints
@@ -189,7 +189,7 @@ graph TD
 5. **User Review**: Present architecture and diagrams for approval
 6. **Multi-Agent Handoff**: Create THREE detailed handoff prompts for implementation agents
 
-#### Architecture Agent Output
+#### Architect Agent Output
 - **Software Engineer Agent Handoff**: `AGENT TYPE: SOFTWARE ENGINEER AGENT` with complete specifications
 - **DevOps Engineer Agent Handoff**: `AGENT TYPE: DEVOPS ENGINEER AGENT` with infrastructure requirements
 - **QA Engineer Agent Handoff**: `AGENT TYPE: QA ENGINEER AGENT` with architecture behavior specifications
@@ -200,7 +200,7 @@ graph TD
 1. **Simultaneous Review**: Software Engineer, DevOps Engineer, and QA Engineer Agents review architecture handoff
 2. **Individual Assessment**: Each agent evaluates handoff against their domain expertise
 3. **Challenge Generation**: Agents generate challenge prompts if concerns exist
-4. **Architecture Response**: Architecture Agent addresses challenges and updates specifications
+4. **Architecture Response**: Architect Agent addresses challenges and updates specifications
 5. **Iterative Refinement**: Cycle continues until all agents are in agreement
 6. **Final Agreement**: All agents confirm readiness to proceed
 
@@ -218,7 +218,7 @@ graph TD
 ## Recommended Solutions
 [Suggested architectural modifications]
 
-## Questions for Architecture Agent
+## Questions for Architect Agent
 [Specific questions requiring clarification]
 ```
 
@@ -261,12 +261,12 @@ graph TD
 3. **Code Review**: Code Reviewer Agent validates implementation against handoff specifications
 4. **Iterative Refinement**: Fix issues until Code Reviewer approval achieved
 5. **Git Commit**: Code committed to repository after approval
-6. **Architecture Validation**: Architecture Agent reviews committed code for compliance
+6. **Architecture Validation**: Architect Agent reviews committed code for compliance
 7. **Phase Completion**: User approval before proceeding to next phase
 
 #### Quality Assurance Integration
 - **Code Quality**: Code Reviewer Agent ensures handoff compliance and coding standards
-- **Architecture Compliance**: Architecture Agent validates implementation matches specifications
+- **Architecture Compliance**: Architect Agent validates implementation matches specifications
 - **Infrastructure Readiness**: DevOps Engineer Agent ensures infrastructure supports implementation
 - **Testing Preparation**: QA Engineer Agent receives implementation summaries for test planning
 
@@ -290,7 +290,7 @@ graph TD
 #### Challenge & Agreement Loop (NEW)
 ```mermaid
 graph LR
-    A[Architecture Agent] --> B[Generate 3 Handoffs]
+    A[Architect Agent] --> B[Generate 3 Handoffs]
     B --> C[Software Engineer Review]
     B --> D[DevOps Engineer Review]
     B --> E[QA Engineer Review]
@@ -359,7 +359,7 @@ graph LR
 #### User Interaction Points
 - **Business Analyst Agent**: Business case validation and Go/No-Go decisions
 - **Product Manager Agent**: Product strategy validation, technology stack confirmation, and UI mockup review
-- **Architecture Agent**: Architecture review, technology stack confirmation, and challenge resolution
+- **Architect Agent**: Architecture review, technology stack confirmation, and challenge resolution
 - **DevOps Engineer Agent**: Infrastructure technology stack confirmation and operational requirements
 - **Software Engineer Agent**: Implementation technology stack confirmation, environment setup, and phase approvals
 - **QA Engineer Agent**: Testing technology stack confirmation and testing scope validation
@@ -372,7 +372,7 @@ graph LR
 
 ### Technology Stack Evaluation Points
 1. **Product Manager Agent**: Evaluates stack against business objectives and market requirements
-2. **Architecture Agent**: Evaluates stack against technical architecture and system requirements
+2. **Architect Agent**: Evaluates stack against technical architecture and system requirements
 3. **Software Engineer Agent**: Evaluates stack against implementation productivity and development requirements
 4. **DevOps Engineer Agent**: Evaluates stack against infrastructure and operational requirements
 5. **QA Engineer Agent**: Evaluates stack against testing framework compatibility and effectiveness
@@ -386,7 +386,7 @@ graph LR
 ### Quality Gates & Validation Points
 - **Business Analyst Agent**: Market viability and business model validation
 - **Product Manager Agent**: Product strategy validation and technology stack confirmation
-- **Architecture Agent**: Technical architecture review with challenge/agreement cycle
+- **Architect Agent**: Technical architecture review with challenge/agreement cycle
 - **Software Engineer Agent**: Phase-by-phase development with quality validation
 - **DevOps Engineer Agent**: Infrastructure compliance and operational excellence validation
 - **Code Reviewer Agent**: Implementation quality and handoff compliance validation
@@ -401,15 +401,15 @@ graph LR
 2. **Business case validation** → User approves business opportunity and monetization strategy
 3. **Product Manager creates strategy** → Product requirements, technology evaluation, and UI mockups
 4. **Product strategy approval** → User confirms product approach and technology stack
-5. **Architecture Agent designs system** → Technical specifications with confirmed technology stack
+5. **Architect Agent designs system** → Technical specifications with confirmed technology stack
 6. **Architecture approval** → User validates architectural approach and visual diagrams
-7. **Multi-agent handoff** → Architecture Agent generates three handoff prompts
+7. **Multi-agent handoff** → Architect Agent generates three handoff prompts
 8. **Challenge & agreement cycle** → Software Engineer, DevOps Engineer, and QA Engineer review and challenge if needed
 9. **Final agreement** → All agents confirm readiness to proceed with implementation
 10. **Infrastructure preparation** → DevOps Engineer designs IaC, CI/CD, monitoring, and security
 11. **Implementation planning** → Software Engineer creates phase plan with DevOps coordination
 12. **Phase implementation** → TDD development with Code Reviewer validation
-13. **Architecture validation** → Architecture Agent reviews committed code for compliance
+13. **Architecture validation** → Architect Agent reviews committed code for compliance
 14. **Iterative development** → Repeat implementation cycle for all phases
 15. **QA validation** → QA Engineer validates complete product against all requirements
 16. **Production deployment** → DevOps Engineer enables production deployment with monitoring
