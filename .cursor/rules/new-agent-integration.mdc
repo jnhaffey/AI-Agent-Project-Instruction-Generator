@@ -1,0 +1,250 @@
+---
+description: Guidelines for adding new agents to the ecosystem with proper validation and structure
+---
+
+# New Agent Integration Rules
+
+When adding a new agent to the ecosystem, follow this structured process to ensure proper integration, validation, and consistency.
+
+## Process Overview
+
+### 1. Clarification Phase
+Ask questions one at a time to fully understand the new agent before proceeding:
+
+#### Initial Questions (Ask One at a Time):
+- **Role Definition**: "What specific role will this new agent fulfill in the ecosystem?"
+- **Primary Responsibilities**: "What are the main responsibilities and capabilities of this agent?"
+- **Input Sources**: "Which existing agents will provide input/handoffs to this new agent?"
+- **Output Destinations**: "Which agents will receive handoffs or outputs from this new agent?"
+- **Workflow Integration**: "At what point in the current workflow should this agent be introduced?"
+- **Technology Requirements**: "What technology stack or tools will this agent need to operate effectively?"
+- **Unique Value**: "What unique value does this agent provide that existing agents cannot?"
+
+#### Follow-up Questions (Based on Initial Responses):
+- **Responsibility Overlap**: "Will this new agent take over any responsibilities currently handled by existing agents?"
+- **Handover Requirements**: "Which existing agents need to be updated to remove responsibilities that will be handled by the new agent?"
+- **Dependencies**: "Are there any dependencies on external services or systems?"
+- **User Interaction**: "Will this agent require direct user interaction or approval points?"
+- **Quality Gates**: "What quality gates or validation points should this agent implement?"
+- **Documentation Needs**: "What type of documentation or outputs should this agent generate?"
+- **Error Handling**: "How should this agent handle errors or edge cases?"
+- **Performance Requirements**: "Are there any specific performance or scalability requirements?"
+
+### 2. Ecosystem Fit Validation
+
+#### Assess Integration Points:
+- **Workflow Compatibility**: Does the agent fit naturally into existing workflows?
+- **Handoff Clarity**: Are input/output relationships clear and logical?
+- **No Overlap**: Does the agent avoid duplicating existing agent responsibilities?
+- **Value Addition**: Does the agent provide clear, unique value to the ecosystem?
+
+#### Red Flags (Warn User):
+- **Responsibility Overlap**: Agent duplicates existing agent capabilities
+- **Workflow Disruption**: Agent would significantly disrupt existing proven workflows
+- **Complexity Addition**: Agent adds unnecessary complexity without clear benefit
+- **Technology Conflicts**: Agent requires incompatible technology stack
+- **Unclear Integration**: Agent's role in the ecosystem is ambiguous or unclear
+
+#### Recommendation Process:
+If concerns arise, provide clear explanation:
+```
+⚠️ ECOSYSTEM FIT CONCERN: [Specific concern]
+
+**Issue**: [Detailed explanation of the concern]
+**Impact**: [How this affects the ecosystem]
+**Recommendation**: [Suggested alternative or modification]
+**Override Option**: You can proceed anyway if you believe the benefits outweigh these concerns.
+```
+
+### 3. Agent Structure Requirements
+
+#### File Structure:
+- **Filename**: `[Agent Name] Agent Instructions.md`
+- **Location**: `Agents/` directory
+- **Version**: Start with `v1.0.0`
+
+#### Required Sections (Follow Existing Pattern):
+```markdown
+# [Agent Name] Agent Instructions v1.0.0
+
+## Role Overview
+[Clear role definition and primary goal]
+
+## Your Responsibilities
+[Numbered list of specific responsibilities]
+
+## Default Technology Stack
+[Technology choices and rationale]
+
+## Process Workflow
+[Detailed workflow phases and processes]
+
+## Key Principles
+[Core principles and approaches]
+
+## Communication Style
+[How the agent should communicate]
+
+## Important Reminders
+[Critical responsibilities and constraints]
+```
+
+#### Versioning Requirements:
+- Start with `v1.0.0` for new agents
+- Follow semantic versioning rules from [agent-versioning.mdc](mdc:.cursor/rules/agent-versioning.mdc)
+- Update version in main heading and role overview
+
+### 4. Responsibility Handover Management
+
+#### Identify Affected Agents:
+When a new agent takes over responsibilities from existing agents:
+
+#### **Required Updates to Existing Agents:**
+- **Remove Transferred Responsibilities**: Update "Your Responsibilities" section
+- **Update Role Overview**: Modify role description to reflect reduced scope
+- **Update Process Workflow**: Remove workflow steps now handled by new agent
+- **Update Handoff Prompts**: Modify handoff prompts to exclude transferred responsibilities
+- **Update Integration Points**: Remove references to transferred capabilities
+
+#### **Handover Prompt Validation:**
+Check for missing handover prompts that should be added:
+
+- **New Agent Handoff Prompts**: Ensure new agent receives proper handoff from affected agents
+- **Updated Handoff Prompts**: Verify existing agents update their handoff prompts
+- **Cross-Agent References**: Update any cross-references between agents
+- **Workflow Integration**: Ensure smooth handover between agents
+
+#### **Handover Prompt Checklist:**
+- [ ] New agent receives handoff prompt from source agent
+- [ ] Source agent updates handoff prompt to exclude transferred responsibilities
+- [ ] New agent generates handoff prompt to destination agents
+- [ ] All affected agents update their integration points
+- [ ] Workflow diagrams reflect new handover points
+
+#### **Missing Handover Prompt Detection:**
+Review and notify user of any missing handover prompts:
+```
+⚠️ MISSING HANDOVER PROMPTS DETECTED:
+
+**From [Source Agent] to [New Agent]:**
+- Missing: [Specific handover prompt that should be added]
+- Impact: [How this affects the workflow]
+
+**From [New Agent] to [Destination Agent]:**
+- Missing: [Specific handover prompt that should be added]
+- Impact: [How this affects the workflow]
+
+**Recommendation**: Add these handover prompts to ensure proper workflow integration.
+```
+
+### 5. Ecosystem Documentation Updates
+
+#### README.md Updates:
+- Add new agent to "Agent Ecosystem Components" section
+- Update workflow diagrams in [Diagrams/](mdc:Diagrams/)
+- Add integration points to "Cross-Agent Communication" section
+- Update "Detailed Agent Interaction Flow" if workflow changes
+- Add to "Future Plans" if replacing a planned agent
+- Update affected agent descriptions to reflect responsibility changes
+
+#### Workflow Diagram Updates:
+- Update [Complete-Agent-Ecosystem-Workflow.mermaid](mdc:Diagrams/Complete-Agent-Ecosystem-Workflow.mermaid)
+- Update [Challenge-Agreement-Loop.mermaid](mdc:Diagrams/Challenge-Agreement-Loop.mermaid) if applicable
+- Ensure visual representation matches new workflow
+
+### 5. Integration Validation
+
+#### Handoff Protocol Validation:
+- **Input Validation**: Ensure input agents can provide required information
+- **Output Validation**: Ensure output agents can consume provided information
+- **Format Consistency**: Use established handoff prompt formats
+- **Agent Type Labels**: Include proper `AGENT TYPE: [AGENT NAME] AGENT` labels
+- **Handover Completeness**: Verify all responsibility transfers are properly documented
+
+#### Workflow Integration Testing:
+- **Sequence Validation**: Verify agent fits logically in workflow sequence
+- **Dependency Check**: Ensure all dependencies are met
+- **Quality Gates**: Confirm quality gates are properly positioned
+- **User Interaction**: Validate user approval points are appropriate
+- **Responsibility Boundaries**: Confirm clear boundaries between agents
+
+### 6. Implementation Checklist
+
+Before finalizing new agent:
+- [ ] All clarification questions answered
+- [ ] Ecosystem fit validated (or concerns acknowledged)
+- [ ] Agent instructions follow established structure
+- [ ] Version set to v1.0.0
+- [ ] README.md updated with new agent information
+- [ ] Workflow diagrams updated
+- [ ] Integration points documented
+- [ ] Handoff protocols defined
+- [ ] Quality gates established
+- [ ] Technology stack documented
+- [ ] **Responsibility handovers completed** (if applicable)
+- [ ] **Affected agents updated** to remove transferred responsibilities
+- [ ] **Handover prompts validated** and missing prompts identified
+- [ ] **Cross-agent references updated** to reflect new boundaries
+
+### 7. Commit and Documentation
+
+#### Commit Message Format:
+```
+Add [Agent Name] Agent v1.0.0 to ecosystem
+
+New Agent:
+- Role: [Brief role description]
+- Integration: [How it fits in workflow]
+- Handoffs: [Input/output relationships]
+
+Responsibility Handovers (if applicable):
+- [Source Agent]: Removed [specific responsibilities]
+- [New Agent]: Added [specific responsibilities]
+- Updated handoff prompts and integration points
+
+Ecosystem Updates:
+- Updated README.md with new agent information
+- Updated workflow diagrams
+- Added integration points and handoff protocols
+- Updated affected agent descriptions and responsibilities
+```
+
+## Example Integration Process
+
+### Question Sequence Example:
+1. "What specific role will the Marketing Agent fulfill?"
+2. "Which agents will provide input to the Marketing Agent?"
+3. "What outputs will the Marketing Agent provide to other agents?"
+4. "At what point in the workflow should the Marketing Agent be introduced?"
+5. "Will the Marketing Agent take over any responsibilities currently handled by existing agents?"
+6. "Which existing agents need to be updated to remove responsibilities that will be handled by the Marketing Agent?"
+
+### Validation Example:
+```
+✅ ECOSYSTEM FIT VALIDATED
+
+**Role Clarity**: Marketing Agent has clear, distinct responsibilities
+**Workflow Integration**: Fits naturally after Product Manager Agent
+**Value Addition**: Provides unique marketing capabilities not covered by existing agents
+**Technology Compatibility**: Uses standard technology stack
+**Handoff Clarity**: Clear input from Product Manager, output to Sales Agent
+**Responsibility Handover**: Takes over marketing strategy from Product Manager Agent
+**Affected Agents**: Product Manager Agent needs updates to remove marketing responsibilities
+```
+
+### Handover Prompt Detection Example:
+```
+⚠️ MISSING HANDOVER PROMPTS DETECTED:
+
+**From Product Manager Agent to Marketing Agent:**
+- Missing: Marketing strategy handoff prompt with business context and target market information
+- Impact: Marketing Agent won't receive necessary business context for strategy development
+
+**From Marketing Agent to Sales Agent:**
+- Missing: Marketing campaign handoff prompt with campaign details and target audience
+- Impact: Sales Agent won't receive marketing materials and campaign context
+
+**Recommendation**: Add these handover prompts to ensure proper workflow integration.
+```
+
+This process ensures new agents are properly validated, structured, and integrated into the ecosystem while maintaining consistency and quality standards.

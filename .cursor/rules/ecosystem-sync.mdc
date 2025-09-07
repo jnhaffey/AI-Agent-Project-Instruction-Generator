@@ -1,0 +1,121 @@
+---
+globs: Agents/*.md,README.md
+description: Ensure ecosystem documentation stays synchronized with agent changes
+---
+
+# Agent-Ecosystem Synchronization Rules
+
+When making changes to any Agent instruction files, you MUST check and update the README.md ecosystem documentation to maintain consistency and accuracy.
+
+## Synchronization Requirements
+
+### 1. Agent Role Changes
+If you modify an agent's **Role Overview** or **Responsibilities**:
+- Update the corresponding agent section in [README.md](mdc:README.md)
+- Ensure the **Role** description matches the updated responsibilities
+- Update **Input** and **Output** descriptions if workflow changes
+
+### 2. Workflow Process Changes
+If you modify agent **Process Workflow** or **Phase** descriptions:
+- Update the workflow diagrams in [Diagrams/](mdc:Diagrams/)
+- Update the **Detailed Agent Interaction Flow** section in [README.md](mdc:README.md)
+- Ensure handoff prompts and coordination points are accurately described
+
+### 3. Technology Stack Changes
+If you modify **Default Technology Stack** or **Technology Evaluation** processes:
+- Update the **Technology Stack Evolution & Compliance** section in [README.md](mdc:README.md)
+- Ensure technology choices are consistently documented across agents
+- Update any technology-specific workflow descriptions
+
+### 4. New Capabilities or Features
+If you add new **Responsibilities**, **Processes**, or **Capabilities**:
+- Update the agent's **Role** description in [README.md](mdc:README.md)
+- Add new capabilities to the **Output** description
+- Update workflow diagrams if new handoff points are created
+- Document new integration points with other agents
+
+### 5. Agent Interaction Changes
+If you modify how agents interact or coordinate:
+- Update the **Cross-Agent Communication** section in [README.md](mdc:README.md)
+- Update **Integration Points** descriptions
+- Modify workflow diagrams to reflect new interaction patterns
+- Update handoff prompt templates and examples
+
+## README.md Sections to Review
+
+### Primary Sections to Update:
+1. **Agent Ecosystem Components** - Individual agent descriptions
+2. **Detailed Agent Interaction Flow** - Workflow processes
+3. **Key Integration Points & Feedback Loops** - Agent coordination
+4. **Cross-Agent Communication** - Handoff protocols
+5. **Technology Stack Evolution & Compliance** - Technology consistency
+
+### Secondary Sections to Review:
+1. **Complete Workflow Diagram** - Visual representation
+2. **Development Workflow Example** - Step-by-step process
+3. **Benefits of the Enhanced Agent Ecosystem** - Value propositions
+4. **Future Plans** - If changes affect planned agents
+
+## Verification Checklist
+
+Before committing agent changes:
+- [ ] Agent role and responsibilities match README description
+- [ ] Workflow processes are accurately documented in README
+- [ ] Technology stack changes are reflected in ecosystem documentation
+- [ ] New capabilities are documented in agent's README section
+- [ ] Agent interaction changes are reflected in integration points
+- [ ] Workflow diagrams accurately represent current processes
+- [ ] Handoff prompts and examples are up-to-date
+- [ ] Cross-references between agents are accurate
+
+## Update Priority Levels
+
+### HIGH PRIORITY (Must Update)
+- Role or responsibility changes
+- Workflow or process modifications
+- New agent capabilities or features
+- Technology stack changes
+- Agent interaction or handoff changes
+
+### MEDIUM PRIORITY (Should Update)
+- Minor process clarifications
+- Updated examples or templates
+- Enhanced documentation or guidelines
+- Improved error handling or validation
+
+### LOW PRIORITY (Nice to Update)
+- Typo fixes or minor clarifications
+- Formatting improvements
+- Minor example updates
+
+## Examples
+
+### Example 1: Adding New Responsibility
+**Agent Change**: Adding "Security Review" to Software Engineer Agent responsibilities
+**README Update**: Update Software Engineer Agent role description to include security review capability
+
+### Example 2: Workflow Modification
+**Agent Change**: Modifying the challenge/agreement cycle process
+**README Update**: Update "Challenge & Agreement Loop" section and corresponding workflow diagrams
+
+### Example 3: Technology Stack Change
+**Agent Change**: Adding new testing framework to QA Engineer Agent
+**README Update**: Update "Technology Stack Evolution & Compliance" section and QA Engineer technology description
+
+## Commit Message Format
+Include ecosystem update information in commit messages:
+```
+[Agent Name] vX.Y.Z: [Description of changes]
+
+Agent Changes:
+- [Specific agent change 1]
+- [Specific agent change 2]
+
+Ecosystem Updates:
+- Updated README.md [section] to reflect [specific change]
+- Updated workflow diagrams for [specific process]
+- Synchronized [specific aspect] across documentation
+```
+
+## Current Ecosystem State
+Reference the current [README.md](mdc:README.md) structure when making updates to ensure consistency with the established documentation format and organization.

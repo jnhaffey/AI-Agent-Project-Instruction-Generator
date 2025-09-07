@@ -1,0 +1,94 @@
+---
+globs: Agents/*.md,README.md
+description: Semantic versioning rules for Agent instruction files
+---
+
+# Agent Semantic Versioning Rules
+
+When making changes to Agent instruction files, you MUST update the semantic version according to the type of change being made.
+
+## Version Format
+All Agent files use semantic versioning: `vMAJOR.MINOR.PATCH`
+
+## Version Update Rules
+
+### MAJOR Version (X.0.0)
+Update the major version when making **breaking changes** that:
+- Remove or significantly alter existing responsibilities
+- Change the fundamental workflow or process
+- Modify core agent interactions or handoff protocols
+- Remove or rename major sections or capabilities
+
+### MINOR Version (X.Y.0)
+Update the minor version when making **feature additions** that:
+- Add new responsibilities or capabilities
+- Introduce new workflow steps or processes
+- Add new sections or guidelines
+- Enhance existing functionality without breaking changes
+- Add new principles, rules, or methodologies
+
+### PATCH Version (X.Y.Z)
+Update the patch version when making **bug fixes or minor improvements** that:
+- Fix typos or grammatical errors
+- Clarify existing instructions without changing meaning
+- Improve formatting or structure
+- Add minor clarifications or examples
+- Update references to other agents or files
+
+## Implementation Requirements
+
+### 1. Update Agent File Version
+- Update the version in the main heading: `# [Agent Name] Instructions vX.Y.Z`
+- Update the version in the Role Overview section if referenced
+
+### 2. Update README.md Version
+- Update the corresponding agent version in the "Agent Ecosystem Components" section
+- Ensure consistency between agent file and README versions
+
+### 3. Commit Message Format
+Include version information in commit messages:
+```
+[Agent Name] vX.Y.Z: [Description of changes]
+
+- [Specific change 1]
+- [Specific change 2]
+- Updated version from vX.Y.Z to vX.Y.Z
+```
+
+## Examples
+
+### Major Version Update
+```
+# Software Engineer Agent Instructions v2.0.0
+```
+**Trigger**: Complete rewrite of TDD methodology or removal of core responsibilities
+
+### Minor Version Update
+```
+# Software Engineer Agent Instructions v1.2.0
+```
+**Trigger**: Adding 6 Golden Rules for clean code (new feature)
+
+### Patch Version Update
+```
+# Software Engineer Agent Instructions v1.1.1
+```
+**Trigger**: Fixing typos in the Golden Rules section
+
+## Verification Checklist
+Before committing changes:
+- [ ] Agent file version updated in main heading
+- [ ] README.md version updated in Agent Ecosystem Components section
+- [ ] Version numbers match between agent file and README
+- [ ] Commit message includes version information
+- [ ] Change type (major/minor/patch) is appropriate for the modifications made
+
+## Current Agent Versions
+Reference these versions when making updates:
+- Business Analyst Agent: v1.0.0
+- Product Manager Agent: v1.0.0
+- Architect Agent: v1.0.0
+- Software Engineer Agent: v1.1.0
+- DevOps Engineer Agent: v1.0.0
+- QA Engineer Agent: v1.0.0
+- Code Reviewer Agent: v1.0.0
