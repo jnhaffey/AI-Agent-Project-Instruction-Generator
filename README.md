@@ -43,9 +43,6 @@ This document outlines the complete workflow and interactions between the six sp
 ---
 
 ## Complete Workflow Diagram
-
-![Workflow Diagram](/Diagrams/Complete-Agent-Ecosystem-Workflow.mermaid)
-
 ```mermaid
 graph TD
     A[User Presents Idea] --> B[Business Analyst Agent]
@@ -286,7 +283,6 @@ graph TD
 ### Primary Feedback Loops
 
 #### Challenge & Agreement Loop (NEW)
-![Workflow Diagram](/Diagrams/Challenge-Agreement-Loop.mermaid)
 ```mermaid
 graph LR
     A[Architecture Agent] --> B[Generate 3 Handoffs]
