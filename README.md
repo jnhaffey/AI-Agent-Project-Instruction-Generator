@@ -1,255 +1,283 @@
 # Agent Development Ecosystem Workflow
 
 ## Overview
-This document outlines the complete workflow and interactions between the five specialized agents in your development ecosystem, designed to take product ideas from concept to fully tested implementation with comprehensive validation and quality assurance.
+This document outlines the complete workflow and interactions between the six specialized agents in your development ecosystem, designed to take product ideas from concept to fully tested implementation with comprehensive validation, quality assurance, and production-ready infrastructure.
 
 ## Agent Ecosystem Components
 
-### 1. Product Manager/Product Owner Agent
-**Role**: Idea evaluation, MVP planning, and multi-agent coordination
-**Input**: Raw product ideas and domain context
-**Output**: Structured epics/features/user stories, UI mockups, and THREE handoff prompts
+### 1. Business Analyst Agent
+**Role**: Market feasibility, monetization assessment, and business case development
+**Input**: Raw product ideas and market context
+**Output**: Business case analysis and Product Manager handoff prompt
 
-### 2. Architecture Agent
-**Role**: Technical architecture design, implementation oversight, and code validation
-**Input**: Product requirements from Product Agent
-**Output**: Technical architecture plan with visual diagrams, Software Engineer handoff prompt, and code compliance validation
+### 2. Product Manager/Product Owner Agent
+**Role**: Product strategy, MVP planning, and requirements definition
+**Input**: Business case from Business Analyst Agent
+**Output**: Product requirements, UI mockups, and THREE handoff prompts
 
-### 3. Software Engineer Agent
-**Role**: Phased implementation planning, TDD development, and Cursor prompt generation
-**Input**: Architectural specifications and product requirements
-**Output**: Development environment requirements, phased Cursor implementation prompts, and comprehensive documentation
+### 3. Architecture Agent
+**Role**: Technical architecture design, implementation oversight, and multi-agent coordination
+**Input**: Product requirements from Product Manager Agent
+**Output**: Technical architecture plan with visual diagrams and THREE handoff prompts
 
-### 4. Code Reviewer Agent
-**Role**: Pull request-style code quality review against handoff specifications
-**Input**: Code implementations and Software Engineer handoff prompts
-**Output**: Structured feedback and compliance validation reports
+### 4. Software Engineer Agent
+**Role**: Implementation planning, TDD development, and code structure design
+**Input**: Architecture specifications and challenge/collaboration cycle
+**Output**: Phased implementation with comprehensive testing and documentation
 
-### 5. QA Engineer Agent
+### 5. DevOps Engineer Agent
+**Role**: Infrastructure as code, CI/CD pipelines, monitoring, security automation, and environment management
+**Input**: Architecture specifications and challenge/collaboration cycle
+**Output**: Production-ready infrastructure and deployment automation
+
+### 6. QA Engineer Agent
 **Role**: Product validation, integration testing, and end-to-end testing
-**Input**: User stories, UI mockups, and implemented products
-**Output**: Automated test suites, product validation reports, and defect reports
+**Input**: Architecture specifications, implementation summaries, and challenge/collaboration cycle
+**Output**: Automated test suites and product validation reports
+
+### 7. Code Reviewer Agent
+**Role**: Code quality review and compliance validation
+**Input**: Implementation code and handoff specifications
+**Output**: Quality feedback and approval validation
 
 ---
 
 ## Complete Workflow Diagram
 
+![Workflow Diagram](/Diagrams/Complete-Agent-Ecosystem-Workflow.mermaid)
+
 ```mermaid
 graph TD
-    A[User Presents Idea] --> B[Product Agent]
+    A[User Presents Idea] --> B[Business Analyst Agent]
     
-    B --> B1[Evaluate Idea & Gather Context]
-    B1 --> B2[Create Epic Breakdown]
-    B2 --> B3[Generate UI Mockups]
-    B3 --> B4[User Review & Approval]
-    B4 --> B5[Generate 3 Handoff Prompts]
+    B --> B1[Market & Business Analysis]
+    B1 --> B2[Business Case Development]
+    B2 --> B3[User Review & Approval]
+    B3 --> B4[Generate PM Handoff Prompt]
     
-    B5 --> C[Architecture Agent]
-    B5 --> D[Software Engineer Agent - Queued]
-    B5 --> E[QA Engineer Agent - Queued]
-    
-    C --> C1[Analyze Requirements]
-    C1 --> C2[Design Architecture within Tech Constraints]
-    C2 --> C3[Create Visual Diagrams]
+    B4 --> C[Product Manager Agent]
+    C --> C1[Product Strategy & MVP Planning]
+    C1 --> C2[Technology Stack Evaluation]
+    C2 --> C3[Create UI Mockups]
     C3 --> C4[User Review & Approval]
-    C4 --> C5[Generate SE Handoff Prompt]
+    C4 --> C5[Generate 3 Handoff Prompts]
     
-    C5 --> D
-    D --> D1[Environment Requirements Check]
-    D1 --> D2[Library Preferences Assessment]
-    D2 --> D3[Create Phase Plan]
-    D3 --> D4[User Approves Phase Plan]
-    D4 --> D5[Generate Phase 1 Cursor Prompt]
+    C5 --> D[Architecture Agent]
+    C5 --> E[Software Engineer Agent - Queued]
+    C5 --> F[QA Engineer Agent - Queued]
     
-    D5 --> F[Development with Cursor]
-    F --> G[Code Reviewer Agent]
+    D --> D1[Technology Stack Evaluation]
+    D1 --> D2[Design Architecture]
+    D2 --> D3[Create Visual Diagrams]
+    D3 --> D4[User Review & Approval]
+    D4 --> D5[Generate 3 Handoff Prompts]
     
-    G --> G1[Review Against Handoff Prompt]
-    G1 --> G2[Check UI Mockup Compliance]
-    G2 --> G3[Validate Architecture Alignment]
-    G3 --> G4[Generate Feedback]
+    D5 --> E
+    D5 --> G[DevOps Engineer Agent]
+    D5 --> F
     
-    G4 --> H{Issues Found?}
-    H -->|Yes| I[Return to Software Engineer]
-    H -->|No| J[Phase Complete]
+    %% Challenge and Agreement Cycle
+    E --> E1[Review Architecture Handoff]
+    G --> G1[Review Architecture Handoff]
+    F --> F1[Review Architecture Handoff]
     
-    I --> D5
+    E1 --> E2{Agreement?}
+    G1 --> G2{Agreement?}
+    F1 --> F2{Agreement?}
     
-    J --> K{More Phases?}
-    K -->|Yes| L[User Approves Next Phase]
-    K -->|No| E
+    E2 -->|No| E3[Generate Challenge Prompt]
+    G2 -->|No| G3[Generate Challenge Prompt]
+    F2 -->|No| F3[Generate Challenge Prompt]
     
-    L --> D5
+    E3 --> D6[Address Challenges]
+    G3 --> D6
+    F3 --> D6
     
-    C --> C6[Review Implementation]
-    C6 --> C7{Matches Architecture?}
-    C7 -->|No| C8[Feedback to SE Agent]
-    C7 -->|Yes| M[Architecture Validated]
+    D6 --> D7[Update Architecture]
+    D7 --> D5
     
-    C8 --> D5
+    E2 -->|Yes| H[All Agents in Agreement]
+    G2 -->|Yes| H
+    F2 -->|Yes| H
     
-    E --> E1[Create Product Validation Tests]
-    E1 --> E2[Test UI Against Mockups]
-    E2 --> E3[Validate User Stories]
-    E3 --> E4[Test Architecture Compliance]
-    E4 --> E5[Execute Test Suites]
+    %% Implementation Phase
+    H --> I[DevOps: Infrastructure Design]
+    H --> J[Software Engineer: Implementation Planning]
     
-    E5 --> N{Product Tests Pass?}
-    N -->|No| O[Report Product Issues to SE Agent]
-    N -->|Yes| P[Product Validated & Complete]
+    I --> I1[IaC Development]
+    I1 --> I2[CI/CD Pipeline Setup]
+    I2 --> I3[Monitoring & Security Setup]
+    I3 --> I4[Environment Management]
     
-    O --> D5
+    J --> J1[Phased Development Planning]
+    J1 --> J2[Phase Implementation]
+    J2 --> K[Code Reviewer Agent]
+    
+    K --> K1[Code Quality Review]
+    K1 --> K2{Issues Found?}
+    K2 -->|Yes| K3[Return to Software Engineer]
+    K3 --> J2
+    K2 -->|No| K4[Code Approved]
+    
+    K4 --> L[Commit to Git Repository]
+    L --> M[Architecture Agent Review]
+    
+    M --> M1{Architecture Compliant?}
+    M1 -->|No| M2[Generate Fix Prompt]
+    M2 --> J2
+    M1 -->|Yes| N{More Phases?}
+    
+    N -->|Yes| O[Next Phase Approval]
+    O --> J2
+    N -->|No| P[Generate QA Handoff]
+    
+    P --> F4[QA Implementation & Testing]
+    F4 --> Q[Product Validated & Complete]
     
     style A fill:#e1f5fe
     style B fill:#f3e5f5
-    style C fill:#e8f5e8
-    style D fill:#fff3e0
-    style E fill:#fce4ec
-    style F fill:#f0f4c3
-    style G fill:#e0f2f1
-    style P fill:#c8e6c9
+    style C fill:#f3e5f5
+    style D fill:#e8f5e8
+    style E fill:#fff3e0
+    style G fill:#e3f2fd
+    style F fill:#fce4ec
+    style K fill:#e0f2f1
+    style Q fill:#c8e6c9
 ```
 
 ---
 
 ## Detailed Agent Interaction Flow
 
-### Phase 1: Product Planning & Requirements
+### Phase 1: Business Analysis & Validation
 
-#### Product Agent Workflow
-1. **Idea Intake**: Receives raw product idea and domain context
-2. **Context Gathering**: Collects essential project information (domain, users, goals, constraints)
-3. **Idea Evaluation**: Assesses viability, market fit, and MVP scope
-4. **MVP Planning**: Creates structured epic breakdown with themes, features, and user stories
-5. **UI Mockup Creation**: Generates basic interface mockups for all user-facing components
-6. **User Validation**: Presents complete plan for approval
-7. **Multi-Agent Handoff**: Creates THREE specialized prompts with Agent Type labels
+#### Business Analyst Agent Workflow
+1. **Market Analysis**: Conduct comprehensive market research and competitive analysis
+2. **Business Case Development**: Assess monetization potential and financial viability
+3. **Risk Assessment**: Evaluate market, technology, and financial risks
+4. **Go/No-Go Recommendation**: Provide clear business recommendation
+5. **User Validation**: Present business case for approval
+6. **Product Manager Handoff**: Generate business-validated handoff prompt
 
-#### Product Agent Output
-- **Architecture Agent Prompt**: `AGENT TYPE: ARCHITECTURE AGENT` - Technical requirements with mandatory tech stack
+#### Business Analyst Agent Output
+- **Product Manager Agent Prompt**: `AGENT TYPE: PRODUCT MANAGER AGENT` - Business context with market opportunity and recommended business model
+
+### Phase 2: Product Strategy & Requirements
+
+#### Product Manager Agent Workflow
+1. **Business Context Integration**: Incorporate business analysis findings into product strategy
+2. **Technology Stack Evaluation**: Assess if default technology stack is optimal for business objectives
+3. **MVP Planning**: Create structured epic breakdown with themes, features, and user stories
+4. **UI Mockup Creation**: Generate basic interface mockups for all user-facing components
+5. **User Validation**: Present complete product plan for approval
+6. **Multi-Agent Handoff**: Create THREE specialized prompts with Agent Type labels
+
+#### Product Manager Agent Output
+- **Architecture Agent Prompt**: `AGENT TYPE: ARCHITECTURE AGENT` - Product requirements with business context and confirmed technology stack
 - **Software Engineer Agent Prompt**: `AGENT TYPE: SOFTWARE ENGINEER AGENT` - Implementation context with UI mockup references (queued until architecture complete)
-- **QA Engineer Agent Prompt**: `AGENT TYPE: QA ENGINEER AGENT` - Testing requirements with UI validation needs (queued until implementation complete)
+- **QA Engineer Agent Prompt**: `AGENT TYPE: QA ENGINEER AGENT` - Testing requirements with UI validation needs (queued until architecture complete)
 
-### Phase 2: Technical Architecture & Design
+### Phase 3: Technical Architecture & Multi-Agent Coordination
 
 #### Architecture Agent Workflow
-1. **Requirements Analysis**: Reviews product specifications and UI mockups
-2. **Architecture Design**: Creates technical architecture within mandatory constraints
-3. **Technology Selection**: Chooses specific tools within established technology stack
-4. **Visual Documentation**: Generates architectural diagrams using Mermaid
-5. **User Review**: Presents architecture and diagrams for approval
-6. **Software Engineer Handoff**: Creates detailed implementation prompt
-
-#### Mandatory Technology Constraints (Non-Negotiable)
-- **Backend**: .NET/C# (always)
-- **Frontend**: React (always)
-- **Authentication**: Auth0 (always)
-- **Cloud Platform**: Azure (always)
-- **Object Mapping**: Never AutoMapper
-- **Testing**: xUnit for backend
+1. **Technology Stack Evaluation**: Assess default stack and recommend alternatives when beneficial
+2. **Requirements Analysis**: Review product specifications and UI mockups with confirmed technology stack
+3. **Architecture Design**: Create technical architecture within confirmed technology constraints
+4. **Visual Documentation**: Generate architectural diagrams using Mermaid
+5. **User Review**: Present architecture and diagrams for approval
+6. **Multi-Agent Handoff**: Create THREE detailed handoff prompts for implementation agents
 
 #### Architecture Agent Output
-- **System Architecture Diagrams**: Component relationships and interactions
-- **Data Flow Diagrams**: Information movement patterns
-- **Azure Services Diagrams**: Cloud integration patterns
-- **Authentication Flow Diagrams**: Auth0 integration workflows
-- **Database Schema Diagrams**: Entity relationships
-- **Software Engineer Handoff**: `AGENT TYPE: SOFTWARE ENGINEER AGENT` with complete specifications
+- **Software Engineer Agent Handoff**: `AGENT TYPE: SOFTWARE ENGINEER AGENT` with complete specifications
+- **DevOps Engineer Agent Handoff**: `AGENT TYPE: DEVOPS ENGINEER AGENT` with infrastructure requirements
+- **QA Engineer Agent Handoff**: `AGENT TYPE: QA ENGINEER AGENT` with architecture behavior specifications
 
-### Phase 3: Phased Implementation Planning & Execution
+### Phase 4: Challenge & Agreement Cycle (NEW)
 
-#### Software Engineer Agent Workflow
-1. **Environment Assessment**: Validates development setup requirements
-2. **Library Preferences**: Confirms third-party library choices
-3. **Architecture Integration**: Incorporates architectural specifications
-4. **Phase Planning**: Breaks work into logical phases and presents plan for approval
-5. **Phase Execution**: Provides ONE phase prompt at a time
-6. **User Feedback**: Waits for approval before proceeding to next phase
-7. **TDD Implementation**: Generates Cursor prompts following Test-Driven Development
+#### Multi-Agent Review Process
+1. **Simultaneous Review**: Software Engineer, DevOps Engineer, and QA Engineer Agents review architecture handoff
+2. **Individual Assessment**: Each agent evaluates handoff against their domain expertise
+3. **Challenge Generation**: Agents generate challenge prompts if concerns exist
+4. **Architecture Response**: Architecture Agent addresses challenges and updates specifications
+5. **Iterative Refinement**: Cycle continues until all agents are in agreement
+6. **Final Agreement**: All agents confirm readiness to proceed
 
-#### Phased Development Structure
-**Phase 1: Foundation & Setup**
-- Solution creation in C:\Coding\Repos\[SolutionName]
-- Git initialization with comprehensive .gitignore
-- Documentation setup (README.md + docs/ folder)
-- Containerization with lightweight Linux containers
-- Test infrastructure setup
+#### Challenge Prompt Structure
+```
+# AGENT TYPE: ARCHITECTURE AGENT
+# [Agent Name] Challenge Prompt: [Issue/Concern Title]
 
-**Phase 2: Core Infrastructure**
-- Database schema implementation
-- Auth0 authentication integration
-- Basic API structure and React foundation
-- Core services and integration testing setup
+## Domain-Specific Concerns
+[Specific concerns from agent's perspective]
 
-**Phase 3: Feature Implementation (Sub-phases)**
-- Individual user story/epic implementation
-- UI components matching Product Agent mockups exactly
-- TDD implementation with comprehensive testing
-- Documentation updates
+## Impact Assessment
+[How concerns affect implementation/infrastructure/testing]
 
-**Phase 4: Integration & Polish**
-- Component integration and error handling
-- Performance optimization and UI refinement
-- Final documentation and deployment preparation
+## Recommended Solutions
+[Suggested architectural modifications]
 
-#### Software Engineer Agent Output
-- **Environment Checklist**: Development setup requirements
-- **Cursor Prompts**: `AGENT TYPE: CURSOR` with TDD implementation instructions
-- **Container Configuration**: Docker and docker-compose setup
-- **Documentation**: Technical README.md and user guides in docs/ folder
-- **Phase Completion Reports**: Status updates requiring user approval
+## Questions for Architecture Agent
+[Specific questions requiring clarification]
+```
 
-### Phase 4: Quality Assurance & Code Review
+#### Agreement Confirmation Structure
+```
+# AGENT TYPE: ARCHITECTURE AGENT
+# [Agent Name] Agreement Confirmation: [Project Name]
 
-#### Code Reviewer Agent Workflow
-1. **Handoff Prompt Review**: Obtains and reviews the most recent Software Engineer handoff prompt
-2. **Code Quality Assessment**: Reviews implementation quality and standards compliance
-3. **Handoff Compliance**: Validates implementations match handoff specifications (PRIMARY FOCUS)
-4. **UI Mockup Validation**: Ensures UI implementations match Product Agent mockups
-5. **Architecture Alignment**: Verifies compliance with Architecture Agent specifications
-6. **Feedback Generation**: Creates structured improvement recommendations
+## Architecture Review Complete
+[Confirmation that specifications are acceptable]
 
-#### Review Categories
-- **🚨 Critical Issues**: Handoff prompt violations, security vulnerabilities, breaking changes
-- **⚠️ Major Issues**: Partial compliance, code quality issues, performance problems
-- **💡 Minor Issues**: Style inconsistencies, optimization opportunities
-- **✅ Positive Feedback**: Successful compliance and good practices
+## Ready to Proceed
+[Specific capabilities ready for implementation]
+```
 
-#### Code Reviewer Agent Output
-- **Compliance Reports**: `AGENT TYPE: SOFTWARE ENGINEER AGENT` with handoff validation
-- **Issue Documentation**: Specific problems and solutions
-- **Architecture Escalation**: Critical issues requiring Architecture Agent input
+### Phase 5: Infrastructure & Implementation Preparation
 
-#### Architecture Agent Code Validation
-1. **Implementation Review**: Validates code matches architectural specifications
-2. **Technology Compliance**: Ensures mandatory technology rules are followed
-3. **Design Pattern Validation**: Verifies architectural patterns are correctly implemented
-4. **Integration Verification**: Confirms components integrate as specified
-5. **Feedback Provision**: Provides technical guidance for improvements
+#### DevOps Engineer Agent Workflow (NEW)
+1. **Infrastructure Technology Evaluation**: Assess infrastructure stack and recommend alternatives
+2. **Infrastructure as Code Design**: Create comprehensive infrastructure definitions
+3. **CI/CD Pipeline Design**: Plan automated build, test, and deployment pipelines
+4. **Monitoring Strategy**: Design application and infrastructure monitoring
+5. **Security Automation**: Plan automated security controls and compliance
+6. **Environment Management**: Design development, staging, and production environments
+7. **Software Engineer Coordination**: Collaborate on local and cloud development support
 
-### Phase 5: Product Validation & Testing
+#### Software Engineer Agent Workflow (Updated)
+1. **Implementation Technology Evaluation**: Assess implementation stack and recommend alternatives
+2. **Environment Assessment**: Validate development setup requirements
+3. **Library Preferences**: Confirm third-party library choices
+4. **Architecture Integration**: Incorporate architectural specifications
+5. **Phase Planning**: Break work into logical phases and present plan for approval
+6. **DevOps Coordination**: Work with DevOps Engineer on deployment strategies
 
-#### QA Engineer Agent Workflow
-1. **Product Analysis**: Reviews user stories, UI mockups, and architectural specifications
-2. **Test Strategy Development**: Plans comprehensive product validation approach
-3. **UI Validation**: Tests implemented UI against Product Agent mockups exactly
-4. **User Story Testing**: Validates all acceptance criteria are met
-5. **Architecture Behavior Testing**: Ensures product behavior aligns with Architecture specifications
-6. **Integration Testing**: Comprehensive component interaction testing
-7. **Issue Reporting**: Documents product defects for Software Engineer resolution
+### Phase 6: Phased Implementation & Quality Assurance
 
-#### Testing Framework Strategy
-- **Backend API Testing**: RestSharp + xUnit for .NET integration testing
-- **Frontend Testing**: Playwright + Jest or Cypress for React automation
-- **Product Validation**: UI mockup compliance and user workflow testing
-- **Consistency**: Maintains same frameworks throughout project
-- **Local Focus**: Tests against local development environment initially
+#### Implementation Cycle
+1. **Phase Execution**: Software Engineer Agent provides ONE phase prompt at a time
+2. **TDD Implementation**: Follow Test-Driven Development methodology
+3. **Code Review**: Code Reviewer Agent validates implementation against handoff specifications
+4. **Iterative Refinement**: Fix issues until Code Reviewer approval achieved
+5. **Git Commit**: Code committed to repository after approval
+6. **Architecture Validation**: Architecture Agent reviews committed code for compliance
+7. **Phase Completion**: User approval before proceeding to next phase
 
-#### QA Agent Output
-- **Test Suites**: Automated integration, E2E, and product validation tests
-- **Product Validation Reports**: UI compliance and user story verification
-- **Issue Reports**: `AGENT TYPE: SOFTWARE ENGINEER AGENT` with product defects
-- **Architecture Validation**: Product behavior compliance with specifications
+#### Quality Assurance Integration
+- **Code Quality**: Code Reviewer Agent ensures handoff compliance and coding standards
+- **Architecture Compliance**: Architecture Agent validates implementation matches specifications
+- **Infrastructure Readiness**: DevOps Engineer Agent ensures infrastructure supports implementation
+- **Testing Preparation**: QA Engineer Agent receives implementation summaries for test planning
+
+### Phase 7: Product Validation & Testing
+
+#### QA Engineer Agent Workflow (Updated)
+1. **Testing Technology Evaluation**: Assess testing stack and recommend alternatives
+2. **Implementation Summary Review**: Receive summary from Software Engineer Agent
+3. **Test Strategy Development**: Create comprehensive testing approach using confirmed testing frameworks
+4. **Product Validation**: Test implemented product against all requirements
+5. **UI Validation**: Test UI against Product Manager mockups using confirmed UI testing framework
+6. **Architecture Behavior Testing**: Validate product behavior against Architecture specifications
+7. **Integration Testing**: Comprehensive component interaction testing
 
 ---
 
@@ -257,186 +285,206 @@ graph TD
 
 ### Primary Feedback Loops
 
-#### Architecture Review Loop
+#### Challenge & Agreement Loop (NEW)
+![Workflow Diagram](/Diagrams/Challenge-Agreement-Loop.mermaid)
 ```mermaid
 graph LR
-    A[Architecture Agent] --> B[User Review]
-    B --> C{Approved?}
-    C -->|No| D[Revise Architecture]
-    C -->|Yes| E[Generate SE Prompt]
-    D --> A
+    A[Architecture Agent] --> B[Generate 3 Handoffs]
+    B --> C[Software Engineer Review]
+    B --> D[DevOps Engineer Review]
+    B --> E[QA Engineer Review]
+    C --> F{Agreement?}
+    D --> G{Agreement?}
+    E --> H{Agreement?}
+    F -->|No| I[Challenge Prompt]
+    G -->|No| I
+    H -->|No| I
+    I --> J[Architecture Updates]
+    J --> A
+    F -->|Yes| K[Implementation Ready]
+    G -->|Yes| K
+    H -->|Yes| K
 ```
 
-#### Phased Development Loop
-```mermaid
-graph LR
-    A[Software Engineer] --> B[Phase Plan]
-    B --> C[User Approval]
-    C --> D[Phase Implementation]
-    D --> E[Phase Completion]
-    E --> F{More Phases?}
-    F -->|Yes| G[Next Phase Approval]
-    F -->|No| H[Complete]
-    G --> D
-```
-
-#### Quality Assurance Loop
+#### Implementation Quality Loop (Updated)
 ```mermaid
 graph LR
     A[Software Engineer] --> B[Implementation]
     B --> C[Code Reviewer]
     C --> D{Handoff Compliant?}
     D -->|No| E[Feedback to SE]
-    D -->|Yes| F[QA Engineer]
+    D -->|Yes| F[Git Commit]
     E --> A
-    F --> G{Product Valid?}
-    G -->|No| H[Issues to SE]
-    G -->|Yes| I[Feature Complete]
-    H --> A
+    F --> G[Architecture Review]
+    G --> H{Architecture Compliant?}
+    H -->|No| I[Fix Prompt to SE]
+    H -->|Yes| J[Phase Complete]
+    I --> A
+```
+
+#### Infrastructure Integration Loop (NEW)
+```mermaid
+graph LR
+    A[DevOps Engineer] --> B[Infrastructure Design]
+    B --> C[Software Engineer Coordination]
+    C --> D[Local Development Support]
+    D --> E[Cloud Development Support]
+    E --> F[CI/CD Integration]
+    F --> G[Production Deployment]
 ```
 
 ### Cross-Agent Communication
 
 #### Agent Type Labels for Clear Routing
-- **`AGENT TYPE: PRODUCT MANAGER AGENT`**: Business analysis handoff with market context
-- **`AGENT TYPE: ARCHITECTURE AGENT`**: Product requirements and constraints
-- **`AGENT TYPE: SOFTWARE ENGINEER AGENT`**: Implementation specifications, feedback, and issues
+- **`AGENT TYPE: BUSINESS ANALYST AGENT`**: Market analysis and business case handoff
+- **`AGENT TYPE: PRODUCT MANAGER AGENT`**: Product requirements and business context
+- **`AGENT TYPE: ARCHITECTURE AGENT`**: Technical specifications, challenges, and updates
+- **`AGENT TYPE: SOFTWARE ENGINEER AGENT`**: Implementation specifications, fixes, and summaries
+- **`AGENT TYPE: DEVOPS ENGINEER AGENT`**: Infrastructure requirements and coordination
 - **`AGENT TYPE: QA ENGINEER AGENT`**: Testing requirements and validation needs
-- **`AGENT TYPE: CURSOR`**: Direct implementation prompts for development
+- **`AGENT TYPE: CODE REVIEWER AGENT`**: Quality assurance and compliance feedback
 
 #### Integration Points
 - **Business Analyst → Product Manager**: Market analysis and business model recommendations
-- **Product Manager → Architecture**: Requirements with mandatory technology constraints and business context
-- **Architecture → Software Engineer**: Technical specifications with visual diagrams
-- **Product Manager → Software Engineer**: UI mockups and user experience requirements
-- **Product Manager → QA Engineer**: User stories and UI validation requirements
-- **Architecture → QA Engineer**: Technical behavior specifications
-- **Code Reviewer → Software Engineer**: Handoff compliance feedback
-- **QA Engineer → Software Engineer**: Product validation feedback
-- **Architecture ↔ Software Engineer**: Ongoing architectural compliance validation
+- **Product Manager → Architecture**: Product requirements with business context and technology stack
+- **Architecture → Software Engineer/DevOps/QA**: Technical specifications with challenge/agreement cycle
+- **Software Engineer ↔ DevOps Engineer**: Local and cloud development coordination
+- **Software Engineer → Code Reviewer**: Implementation validation and quality assurance
+- **Architecture ← Software Engineer/DevOps/QA**: Challenge prompts and agreement confirmations
+- **Code Reviewer → Software Engineer**: Quality feedback and compliance validation
+- **Architecture → Software Engineer**: Architecture compliance validation and fix prompts
+- **Software Engineer → QA Engineer**: Implementation summary and testing handoff
 
 #### User Interaction Points
-- **Business Analyst Agent**: Market scope clarification, business model validation, and viability decisions
-- **Product Manager Agent**: Product strategy validation, epic approval, and UI mockup review
-- **Architecture Agent**: Architecture review, diagram approval, and technology validation
-- **Software Engineer Agent**: Environment setup, library preferences, and phase approvals
-- **Development Process**: Cursor prompt execution and phase-by-phase implementation
-- **Final Delivery**: Market-validated, tested, and documented features
-- **Development Process**: Cursor prompt execution and phase-by-phase implementation
-- **Final Delivery**: Validated, tested, and documented features
+- **Business Analyst Agent**: Business case validation and Go/No-Go decisions
+- **Product Manager Agent**: Product strategy validation, technology stack confirmation, and UI mockup review
+- **Architecture Agent**: Architecture review, technology stack confirmation, and challenge resolution
+- **DevOps Engineer Agent**: Infrastructure technology stack confirmation and operational requirements
+- **Software Engineer Agent**: Implementation technology stack confirmation, environment setup, and phase approvals
+- **QA Engineer Agent**: Testing technology stack confirmation and testing scope validation
+- **Development Process**: Phase-by-phase implementation with quality gates
+- **Final Delivery**: Business-validated, tested, and production-ready solution
 
 ---
 
-## Technology Stack Compliance
+## Technology Stack Evolution & Compliance
 
-### Mandatory Technology Rules (Enforced by All Agents)
-All agents enforce these non-negotiable constraints:
+### Technology Stack Evaluation Points
+1. **Product Manager Agent**: Evaluates stack against business objectives and market requirements
+2. **Architecture Agent**: Evaluates stack against technical architecture and system requirements
+3. **Software Engineer Agent**: Evaluates stack against implementation productivity and development requirements
+4. **DevOps Engineer Agent**: Evaluates stack against infrastructure and operational requirements
+5. **QA Engineer Agent**: Evaluates stack against testing framework compatibility and effectiveness
 
-1. **Backend**: .NET/C# exclusively (ASP.NET Core recommended)
-2. **Frontend**: React exclusively for web applications
-3. **Authentication**: Auth0 exclusively (never local authentication)
-4. **Cloud Platform**: Azure exclusively for hosting and services
-5. **Object Mapping**: Never AutoMapper (manual mapping required)
-6. **Testing**: xUnit for backend, Jest for frontend
-7. **Containerization**: Lightweight Linux containers for all executable projects
-8. **Source Control**: Git with comprehensive .gitignore for Visual Studio and React
-9. **Local Development**: Use emulators and local services to minimize cloud costs
-10. **Documentation**: Comprehensive README.md (technical) + docs/ folder (user guides)
+### Technology Consistency Enforcement
+- **User Approval Gates**: All technology stack changes require explicit user approval
+- **Cross-Agent Alignment**: Technology decisions propagate through all downstream agents
+- **Documentation Updates**: All agents update processes based on confirmed technology stack
+- **Integration Validation**: Technology choices validated across the entire ecosystem
 
 ### Quality Gates & Validation Points
-- **Product Agent**: User story validation and UI mockup approval
-- **Architecture Agent**: Technical architecture review with visual diagram validation
-- **Software Engineer Agent**: Phase-by-phase development with user approval gates
-- **Code Reviewer Agent**: Handoff prompt compliance and code quality validation
-- **QA Engineer Agent**: Product validation against user stories and UI mockups
-- **Architecture Agent**: Ongoing code validation against architectural specifications
+- **Business Analyst Agent**: Market viability and business model validation
+- **Product Manager Agent**: Product strategy validation and technology stack confirmation
+- **Architecture Agent**: Technical architecture review with challenge/agreement cycle
+- **Software Engineer Agent**: Phase-by-phase development with quality validation
+- **DevOps Engineer Agent**: Infrastructure compliance and operational excellence validation
+- **Code Reviewer Agent**: Implementation quality and handoff compliance validation
+- **QA Engineer Agent**: Product validation against requirements and architectural specifications
 
 ---
 
 ## Development Workflow Example
 
 ### Complete Project Flow
-1. **User presents idea** → Product Agent evaluates and creates structured requirements
-2. **Product Agent creates UI mockups** → Visual representation of user experience
-3. **Product Agent generates 3 handoff prompts** → Parallel agent preparation
-4. **Architecture Agent designs system** → Technical specifications with diagrams
-5. **User approves architecture** → Gate before implementation begins
-6. **Software Engineer creates phase plan** → Logical development breakdown
-7. **User approves phase plan** → Gate before development starts
-8. **Phase 1 implementation** → Foundation setup with TDD
-9. **Code Reviewer validates Phase 1** → Handoff compliance check
-10. **User approves Phase 1** → Gate before Phase 2
-11. **Repeat for all phases** → Incremental development with validation
-12. **QA Engineer validates product** → Complete product testing
-13. **Architecture Agent validates implementation** → Final architectural compliance
-14. **Project complete** → Fully tested, documented, and validated product
+1. **User presents idea** → Business Analyst Agent evaluates market and business viability
+2. **Business case validation** → User approves business opportunity and monetization strategy
+3. **Product Manager creates strategy** → Product requirements, technology evaluation, and UI mockups
+4. **Product strategy approval** → User confirms product approach and technology stack
+5. **Architecture Agent designs system** → Technical specifications with confirmed technology stack
+6. **Architecture approval** → User validates architectural approach and visual diagrams
+7. **Multi-agent handoff** → Architecture Agent generates three handoff prompts
+8. **Challenge & agreement cycle** → Software Engineer, DevOps Engineer, and QA Engineer review and challenge if needed
+9. **Final agreement** → All agents confirm readiness to proceed with implementation
+10. **Infrastructure preparation** → DevOps Engineer designs IaC, CI/CD, monitoring, and security
+11. **Implementation planning** → Software Engineer creates phase plan with DevOps coordination
+12. **Phase implementation** → TDD development with Code Reviewer validation
+13. **Architecture validation** → Architecture Agent reviews committed code for compliance
+14. **Iterative development** → Repeat implementation cycle for all phases
+15. **QA validation** → QA Engineer validates complete product against all requirements
+16. **Production deployment** → DevOps Engineer enables production deployment with monitoring
+17. **Project complete** → Fully tested, documented, and production-ready solution
 
 ### Key Success Factors
 
 #### Comprehensive Coverage with Business Validation
 - **Market Analysis**: Thorough feasibility assessment before product development
 - **Business Model Alignment**: Revenue strategy integrated throughout development
+- **Technology Optimization**: Stack evaluation at multiple points for optimal choices
 - **Product Strategy**: Clear requirements and user-focused design with visual mockups
-- **Technical Architecture**: Robust, scalable system design with mandatory technology compliance
+- **Technical Architecture**: Robust, scalable system design with multi-agent validation
+- **Infrastructure Excellence**: Production-ready infrastructure with automation and monitoring
 - **Implementation Quality**: Professional code standards with TDD methodology
 - **Product Validation**: Comprehensive quality assurance against all requirements
 
-#### Consistency & Standards
-- **Business Model Focus**: Prioritized revenue models enforced across all development
-- **Technology Stack**: Enforced compliance across all projects and agents
-- **Code Quality**: Consistent review standards and feedback mechanisms
-- **Testing Strategy**: Standardized testing approaches and frameworks
-- **Documentation**: Clear specifications and visual representations at all levels
+#### Enhanced Collaboration & Validation
+- **Challenge-Driven Architecture**: Multi-agent review prevents downstream issues
+- **Technology Stack Consensus**: All agents align on optimal technology choices
+- **Iterative Refinement**: Multiple validation points ensure quality at each stage
+- **Cross-Agent Coordination**: Software Engineer and DevOps Engineer collaboration ensures seamless development
+- **Quality Assurance**: Multiple review layers ensure implementation compliance
+
+#### Operational Excellence
+- **Infrastructure as Code**: Reproducible, version-controlled infrastructure
+- **CI/CD Automation**: Automated build, test, and deployment pipelines
+- **Monitoring and Security**: Comprehensive observability and automated security controls
+- **Environment Management**: Consistent development, staging, and production environments
+- **Cloud Cost Optimization**: DevOps Engineer responsible for maintaining cost-effective infrastructure
+- **Local and Cloud Support**: Seamless development experience across environments
+- **Latest Technology Stack**: Always using latest stable versions of all libraries and frameworks
+- **Comprehensive Change Tracking**: Complete changelog documentation for all modifications
 
 #### Cost Efficiency & Control
-- **Market Validation**: Ideas validated for viability before development investment
+- **Business Validation**: Ideas validated for viability before development investment
+- **Technology Optimization**: Stack choices optimized for both capability and cost
 - **Local Development**: Minimal cloud costs during development phase
-- **Phased Approach**: User control over development progression
-- **Containerization**: Consistent environments and easy deployment
-- **Automation**: Reduced manual effort through agent coordination
-
-#### Quality Assurance & Validation
-- **Business Case Validation**: Market opportunity and monetization potential confirmed
-- **Multi-Level Review**: Business, product, architecture, code, and functionality validation
-- **Visual Consistency**: UI implementations match designed mockups exactly
-- **Requirements Traceability**: All implementations trace back to original business case and requirements
-- **Comprehensive Testing**: Product validation from multiple perspectives
+- **Automated Operations**: Reduced operational overhead through automation
+- **Phased Approach**: User control over development progression with quality gates
 
 ---
 
-## Benefits of the Integrated Agent Ecosystem
+## Benefits of the Enhanced Agent Ecosystem
 
-### Enhanced Business Value
-- **Market-Driven Development**: All projects validated for business opportunity before development
-- **Revenue Model Integration**: Business models considered throughout entire development cycle
-- **Risk Mitigation**: Technology, market, and financial risks identified early
-- **Competitive Positioning**: Market analysis ensures differentiated solutions
+### Superior Business Value
+- **Market-Driven Development**: All projects validated for business opportunity and competitive advantage
+- **Technology-Business Alignment**: Technology choices optimized for business objectives
+- **Revenue Model Integration**: Business models supported throughout entire development and infrastructure
+- **Operational Excellence**: Production-ready infrastructure with monitoring, security, and automation
 
 ### Enhanced Quality Control
-- **Multiple Validation Points**: Business, requirements, architecture, code, and product validation
-- **Visual Consistency**: UI mockups ensure consistent user experience
-- **Technology Compliance**: Mandatory stack ensures project consistency
-- **Business Model Validation**: Products designed to support identified revenue streams
+- **Multi-Point Validation**: Business, product, architecture, implementation, infrastructure, and testing validation
+- **Challenge-Driven Architecture**: Proactive issue identification through multi-agent review
+- **Technology Consensus**: All agents align on optimal technology choices for their domains
+- **Quality Gates**: Multiple validation points ensure quality at each development stage
 
-### Improved Efficiency
-- **Early Filtering**: Non-viable ideas stopped before development investment
-- **Clear Handoffs**: Agent Type labels enable proper routing and automation
-- **Phased Development**: Controlled progression with user oversight
-- **Parallel Preparation**: Multiple agents can prepare simultaneously
-- **Automated Validation**: Consistent checking against specifications
+### Improved Efficiency & Collaboration
+- **Proactive Issue Resolution**: Challenge and agreement cycle prevents downstream problems
+- **Technology Optimization**: Stack evaluation at multiple points ensures optimal choices
+- **Cross-Agent Coordination**: Software Engineer and DevOps Engineer collaboration eliminates integration issues
+- **Automated Operations**: Infrastructure automation reduces operational overhead
+- **Parallel Preparation**: Multiple agents can work simultaneously within coordinated workflow
+
+### Production Readiness
+- **Infrastructure Excellence**: Production-ready infrastructure from day one
+- **Deployment Automation**: Automated CI/CD pipelines for reliable deployments
+- **Monitoring and Security**: Comprehensive observability and security automation
+- **Environment Consistency**: Identical environments from development to production
+- **Operational Support**: Full monitoring, alerting, and incident response capabilities
 
 ### Risk Mitigation
 - **Business Feasibility**: Market and financial viability confirmed before development
-- **Early Architecture Review**: Technical issues caught before implementation
-- **Phase-by-Phase Approval**: Issues addressed at each development stage
-- **Handoff Compliance**: Implementations match specifications exactly
-- **Product Validation**: Final product meets all original business and technical requirements
+- **Technology Validation**: Technology choices validated across all agent domains
+- **Architecture Review**: Multi-agent challenge process identifies issues early
+- **Quality Assurance**: Implementation compliance validated at multiple levels
+- **Operational Readiness**: Infrastructure and deployment risks addressed proactively
 
-### Professional Standards
-- **Business Case Documentation**: Comprehensive market analysis and business planning
-- **Enterprise-Level Documentation**: Technical and user documentation maintained
-- **Industry Best Practices**: TDD, proper architecture, comprehensive testing
-- **Scalable Patterns**: Consistent approaches across all projects
-- **Knowledge Capture**: Documented decisions, market analysis, and architectural patterns
-
-This integrated agent ecosystem provides a complete, professional development workflow that takes raw business ideas from initial concept through market validation to production-ready implementation while maintaining high quality standards, business viability, cost efficiency, and user control throughout the entire process.
+This enhanced agent ecosystem provides a complete, professional development workflow that takes raw business ideas from initial concept through market validation to production-ready implementation while maintaining high quality standards, business viability, operational excellence, cost efficiency, and user control throughout the entire process.

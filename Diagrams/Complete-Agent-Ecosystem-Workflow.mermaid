@@ -1,0 +1,96 @@
+graph TD
+    A[User Presents Idea] --> B[Business Analyst Agent]
+    
+    B --> B1[Market & Business Analysis]
+    B1 --> B2[Business Case Development]
+    B2 --> B3[User Review & Approval]
+    B3 --> B4[Generate PM Handoff Prompt]
+    
+    B4 --> C[Product Manager Agent]
+    C --> C1[Product Strategy & MVP Planning]
+    C1 --> C2[Technology Stack Evaluation]
+    C2 --> C3[Create UI Mockups]
+    C3 --> C4[User Review & Approval]
+    C4 --> C5[Generate 3 Handoff Prompts]
+    
+    C5 --> D[Architecture Agent]
+    C5 --> E[Software Engineer Agent - Queued]
+    C5 --> F[QA Engineer Agent - Queued]
+    
+    D --> D1[Technology Stack Evaluation]
+    D1 --> D2[Design Architecture]
+    D2 --> D3[Create Visual Diagrams]
+    D3 --> D4[User Review & Approval]
+    D4 --> D5[Generate 3 Handoff Prompts]
+    
+    D5 --> E
+    D5 --> G[DevOps Engineer Agent]
+    D5 --> F
+    
+    %% Challenge and Agreement Cycle
+    E --> E1[Review Architecture Handoff]
+    G --> G1[Review Architecture Handoff]
+    F --> F1[Review Architecture Handoff]
+    
+    E1 --> E2{Agreement?}
+    G1 --> G2{Agreement?}
+    F1 --> F2{Agreement?}
+    
+    E2 -->|No| E3[Generate Challenge Prompt]
+    G2 -->|No| G3[Generate Challenge Prompt]
+    F2 -->|No| F3[Generate Challenge Prompt]
+    
+    E3 --> D6[Address Challenges]
+    G3 --> D6
+    F3 --> D6
+    
+    D6 --> D7[Update Architecture]
+    D7 --> D5
+    
+    E2 -->|Yes| H[All Agents in Agreement]
+    G2 -->|Yes| H
+    F2 -->|Yes| H
+    
+    %% Implementation Phase
+    H --> I[DevOps: Infrastructure Design]
+    H --> J[Software Engineer: Implementation Planning]
+    
+    I --> I1[IaC Development]
+    I1 --> I2[CI/CD Pipeline Setup]
+    I2 --> I3[Monitoring & Security Setup]
+    I3 --> I4[Environment Management]
+    
+    J --> J1[Phased Development Planning]
+    J1 --> J2[Phase Implementation]
+    J2 --> K[Code Reviewer Agent]
+    
+    K --> K1[Code Quality Review]
+    K1 --> K2{Issues Found?}
+    K2 -->|Yes| K3[Return to Software Engineer]
+    K3 --> J2
+    K2 -->|No| K4[Code Approved]
+    
+    K4 --> L[Commit to Git Repository]
+    L --> M[Architecture Agent Review]
+    
+    M --> M1{Architecture Compliant?}
+    M1 -->|No| M2[Generate Fix Prompt]
+    M2 --> J2
+    M1 -->|Yes| N{More Phases?}
+    
+    N -->|Yes| O[Next Phase Approval]
+    O --> J2
+    N -->|No| P[Generate QA Handoff]
+    
+    P --> F4[QA Implementation & Testing]
+    F4 --> Q[Product Validated & Complete]
+    
+    style A fill:#e1f5fe
+    style B fill:#f3e5f5
+    style C fill:#f3e5f5
+    style D fill:#e8f5e8
+    style E fill:#fff3e0
+    style G fill:#e3f2fd
+    style F fill:#fce4ec
+    style K fill:#e0f2f1
+    style Q fill:#c8e6c9
