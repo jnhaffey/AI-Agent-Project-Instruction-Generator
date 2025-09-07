@@ -594,3 +594,29 @@ These future agents will be developed and integrated into the ecosystem based on
 - Business value and impact assessment
 
 The modular design of the current agent ecosystem ensures that new agents can be seamlessly integrated without disrupting existing workflows.
+
+### Flow-Orchestrated Handoffs (n8n)
+
+To improve reliability, traceability, and automation of inter-agent handoffs, future iterations will introduce a flow-based orchestration using n8n:
+
+- Triggering
+  - Webhook/Manual triggers to start flows from user actions or CI events
+  - Scheduled triggers for recurring validations or syncs
+- Routing & Handoffs
+  - Dedicated nodes per agent to package, validate, and dispatch handoff payloads
+  - Conditional routing for challenge/agreement loops (branch on approval/feedback)
+- State & Persistence
+  - Use n8n data stores (and/or external DB) to persist handoff status, versions, and audit logs
+  - Idempotency keys on messages to prevent duplicate processing
+- Reliability
+  - Built-in retries with backoff and dead-letter handling for failed steps
+  - Notifications on failures and approvals (email/Slack/MS Teams nodes)
+- Integration
+  - GitHub nodes for changelog commits and PR automation
+  - Issue tracker nodes to open/close work items based on handoff outcomes
+  - Artifact storage for prompts, designs, and reports
+- Security & Access
+  - Scoped credentials per integration
+  - Sanitization steps for prompt payloads
+
+Initial rollout will focus on orchestrating the Product Manager → UI/UX → Software Engineer/QA flow and the Architecture challenge/agreement loop. Subsequent phases will extend orchestration to DevOps pipelines and production approval gates.
