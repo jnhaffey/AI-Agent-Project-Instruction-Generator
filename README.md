@@ -3,6 +3,11 @@
 ## Overview
 This document outlines the complete workflow and interactions between the six specialized agents in your development ecosystem, designed to take product ideas from concept to fully tested implementation with comprehensive validation, quality assurance, and production-ready infrastructure.
 
+## Interactive Claude Artifact
+An interactive version of these Agent Instructions is available in Claude. You must have a Claude account to view and use it.
+
+[Open the interactive Claude Artifact](https://claude.ai/public/artifacts/9979554b-27b7-4510-ac40-37f62a763ec7)
+
 ## Agent Ecosystem Components
 
 ### 1. Business Analyst Agent
