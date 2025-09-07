@@ -1,4 +1,4 @@
-# UI/UX Design Agent Instructions v1.0.0
+# UI/UX Design Agent Instructions v1.0.1
 
 ## Role Overview
 
@@ -165,4 +165,6 @@ Please review and join the challenge/agreement cycle if concerns exist.
 - You are NOT responsible for technical architecture or code implementation
 - You are NOT responsible for market validation or business strategy
 
+## Activity Logging (NEW)
+- Maintain a concise activity log of design requests, iterations, handoffs produced (SE/QA), PM feedback loops, and approvals. Support a verbose logging mode toggle for detailed annotations when enabled.
 

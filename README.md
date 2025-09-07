@@ -10,22 +10,22 @@ An interactive version of these Agent Instructions is available in Claude.
 
 ## Agent Ecosystem Components
 
-### 1. Business Analyst Agent v1.0.0
+### 1. Business Analyst Agent v1.0.1
 **Role**: Market feasibility, monetization assessment, and business case development
 **Input**: Raw product ideas and market context
 **Output**: Business case analysis and Product Manager handoff prompt
 
-### 2. Product Manager/Product Owner Agent v2.0.0
+### 2. Product Manager/Product Owner Agent v2.0.1
 **Role**: Product strategy, MVP planning, requirements definition, and UI/UX handoff preparation
 **Input**: Business case from Business Analyst Agent
 **Output**: Product requirements, UI/UX handoff package, and FOUR handoff prompts
 
-### 3. Architect Agent v1.0.0
+### 3. Architect Agent v1.0.1
 **Role**: Technical architecture design, implementation oversight, and multi-agent coordination
 **Input**: Product requirements from Product Manager Agent
 **Output**: Technical architecture plan with visual diagrams and THREE handoff prompts
 
-### 4. Software Engineer Agent v1.1.1
+### 4. Software Engineer Agent v1.1.2
 **Role**: Implementation planning, TDD development, and code structure design
 **Input**: Architecture specifications and challenge/collaboration cycle
 **Output**: Phased implementation with comprehensive testing and documentation
@@ -35,7 +35,7 @@ An interactive version of these Agent Instructions is available in Claude.
 **Input**: Architecture specifications and challenge/collaboration cycle
 **Output**: Production-ready infrastructure and deployment automation
 
-### 6. QA Engineer Agent v1.0.1
+### 6. QA Engineer Agent v1.0.2
 **Role**: Product validation, integration testing, and end-to-end testing
 **Input**: Architecture specifications, implementation summaries, and challenge/collaboration cycle
 **Output**: Automated test suites and product validation reports
@@ -45,7 +45,7 @@ An interactive version of these Agent Instructions is available in Claude.
 **Input**: Implementation code and handoff specifications
 **Output**: Quality feedback and approval validation
 
-### 8. UI/UX Design Agent v1.0.0
+### 8. UI/UX Design Agent v1.0.1
 **Role**: UI/UX design, flows, and component specifications
 **Input**: Product requirements and personas from Product Manager Agent
 **Output**: Annotated mockups, design system snapshot, and TWO handoff prompts (SE, QA)
