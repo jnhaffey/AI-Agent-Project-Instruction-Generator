@@ -53,6 +53,32 @@ An interactive version of these Agent Instructions is available in Claude.
 
 ---
 
+## RACI Matrix
+
+The matrix below clarifies who is Responsible (R), Accountable (A), Consulted (C), and Informed (I) for major lifecycle activities across agents.
+
+| Activity | Business Analyst | Product Manager | Architect | Software Engineer | DevOps Engineer | QA Engineer | Code Reviewer | UI/UX Design |
+|---|---|---|---|---|---|---|---|---|
+| Market analysis & opportunity sizing | R/A | C | I | I | I | I | I | I |
+| Business case & monetization | R/A | C | I | I | I | I | I | I |
+| Product strategy & requirements | C | R/A | C | I | I | C | I | C |
+| UI/UX design, flows, and mockups | I | C | C | I | I | C | I | R/A |
+| Technology stack evaluation | I | C | R/A | C | C | C | I | I |
+| Architecture design & diagrams | I | I | R/A | C | C | C | I | C |
+| Challenge & agreement cycle | I | I | A | R | R | R | C | C |
+| Implementation planning (phases) | I | I | C | R/A | C | C | I | C |
+| Development per phase (TDD) | I | I | I | R | C | C | C | I |
+| Code review & standards compliance | I | I | I | C | I | I | R/A | I |
+| Architecture compliance review | I | I | R/A | C | I | I | C | I |
+| Infrastructure design & CI/CD | I | I | C | C | R/A | I | I | I |
+| Test strategy & product validation | I | I | C | C | I | R/A | I | C |
+| Release readiness & deployment | I | I | C | C | R/A | C | C | I |
+| Handoff prompts & documentation | C | R/A | R/A | C | C | C | C | R |
+
+Notes:
+- Accountable (A) indicates final decision ownership. When two agents are marked A, they are co-owners for that activity within their domain scope (e.g., PM for product-facing artifacts, Architect for technical artifacts).
+- Activities span the end-to-end workflow; some occur iteratively across phases.
+
 ## Complete Workflow Diagram
 ```mermaid
 graph TD
